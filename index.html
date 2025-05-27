@@ -320,11 +320,9 @@
         .dark-theme footer a:hover {
             color: var(--dark-link-hover);
         }
-        /* Add to your <style> section if you want a blinking cursor */
-        .site-subtitle::after {
-            content: '';
+        /* Blinking cursor CSS */
+        .subtitle-cursor {
             display: inline-block;
-            width: 0.7ch;
             animation: blink 1s steps(1) infinite;
             vertical-align: baseline;
         }
@@ -334,7 +332,7 @@
         }
     </style>
 </head>
-<body>
+<body class="dark-theme">
 
     <header>
         <button class="menu-toggle" aria-label="Open menu">&#9776;</button>
@@ -385,14 +383,14 @@
     <script>
         // Theme toggle
         const themeToggle = document.querySelector('.theme-toggle');
+        function updateThemeIcon() {
+            themeToggle.textContent = document.body.classList.contains('dark-theme') ? '🌙' : '☀️';
+        }
         themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark-theme');
-            if (document.body.classList.contains('dark-theme')) {
-                themeToggle.textContent = '🌙';
-            } else {
-                themeToggle.textContent = '☀️';
-            }
+            updateThemeIcon();
         });
+        updateThemeIcon();
 
         // Mobile menu toggle
         const menuToggle = document.querySelector('.menu-toggle');
@@ -422,17 +420,20 @@
         let subtitleIndex = 0;
         const subtitleEl = document.getElementById('site-subtitle');
 
+        function setSubtitleWithCursor(text) {
+            subtitleEl.innerHTML = `<span class="subtitle-text">${text}</span><span class="subtitle-cursor">▌</span>`;
+        }
+
+        // Typewriter effect with persistent blinking cursor
         function typeSubtitle(text, cb) {
-            subtitleEl.textContent = "";
             let i = 0;
             function type() {
-                if (i <= text.length) {
-                    subtitleEl.textContent = text.slice(0, i) + (i % 2 === 0 ? "▌" : " ");
+                setSubtitleWithCursor(text.slice(0, i));
+                if (i < text.length) {
                     i++;
                     setTimeout(type, 55);
-                } else {
-                    subtitleEl.textContent = text; // Remove cursor at end
-                    if (cb) setTimeout(cb, 900);
+                } else if (cb) {
+                    setTimeout(cb, 900);
                 }
             }
             type();
