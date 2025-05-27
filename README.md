@@ -1,5 +1,4 @@
-  <!--
-    This is a simple portfolio site for karlsune.
+    This is a simple portfolio site for karlsune. ###
     It is designed to be minimalistic and easy to navigate.
     The site is built with HTML, CSS, and JavaScript.
     It is responsive and works on all devices.
@@ -12,4 +11,3 @@
     Thank you for visiting my portfolio site!
 
     Disclaimer: Some content of this repository was created with the help of generative AI. The code created by the generative AI is provided under the github copilot terms of service.
-    -->
