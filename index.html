@@ -4,9 +4,12 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>portfolio Site | karlsune</title>
-    <!-- JetBrains Mono font -->
+    <!-- JetBrains Mono font from Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* =========================
+           CSS VARIABLES & BASE STYLES
+           ========================= */
         :root {
             --light-bg: #e3f0ff;
             --light-header: #b3d1fa;
@@ -19,9 +22,8 @@
             --dark-link: #50fa7b;
             --dark-link-hover: #bd93f9;
         }
-        footer section {
-        background: var(--dark-header);
-        }
+
+        /* Remove default margin/padding, set font */
         html, body {
             height: 100%;
             margin: 0;
@@ -37,6 +39,10 @@
             color: var(--light-text);
             background: var(--light-bg);
         }
+
+        /* =========================
+           HEADER & NAVIGATION
+           ========================= */
         header {
             width: 100%;
             min-height: 44px;
@@ -51,27 +57,6 @@
             box-shadow: 0 2px 8px rgba(25, 118, 210, 0.07);
             padding: 0 1rem;
             border-bottom: 1px solid #b3d1fa;
-        }
-        .site-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin: 2rem 0 1rem 0;
-            text-align: center;
-            letter-spacing: 0.04em;
-            color: var(--light-accent);
-        }
-        .site-subtitle {
-            font-size: 1.1rem;
-            color: var(--light-accent);
-            margin-bottom: 1.5rem;
-            min-height: 1.5em;
-            transition: color 0.4s;
-            text-align: center;
-            opacity: 0.85;
-            letter-spacing: 0.01em;
-        }
-        .dark-theme .site-subtitle {
-            color: var(--dark-accent);
         }
         .theme-toggle {
             font-size: 1.2rem;
@@ -116,6 +101,10 @@
             background: #e3f0ff;
             color: #1565c0;
         }
+
+        /* =========================
+           MAIN CONTENT & SECTIONS
+           ========================= */
         main {
             width: 100%;
             max-width: 600px;
@@ -123,6 +112,27 @@
             flex-direction: column;
             align-items: center;
             padding: 1rem 0;
+        }
+        .site-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 2rem 0 1rem 0;
+            text-align: center;
+            letter-spacing: 0.04em;
+            color: var(--light-accent);
+        }
+        .site-subtitle {
+            font-size: 1.1rem;
+            color: var(--light-accent);
+            margin-bottom: 1.5rem;
+            min-height: 1.5em;
+            transition: color 0.4s;
+            text-align: center;
+            opacity: 0.85;
+            letter-spacing: 0.01em;
+        }
+        .dark-theme .site-subtitle {
+            color: var(--dark-accent);
         }
         section {
             width: 100%;
@@ -146,7 +156,10 @@
         section#about {
             margin-top: 0;
         }
-        /* Footer styled like header */
+
+        /* =========================
+           FOOTER
+           ========================= */
         footer {
             width: 100%;
             min-height: 44px;
@@ -188,6 +201,10 @@
             color: #1565c0;
             text-decoration: underline;
         }
+
+        /* =========================
+           RESPONSIVE DESIGN
+           ========================= */
         @media (max-width: 900px) and (min-width: 601px) {
             section {
                 border-radius: 10px;
@@ -263,11 +280,13 @@
                 border-top: 1px solid #b3d1fa;
                 padding-left: 0.5rem;
                 padding-right: 0.5rem;
-                /* REMOVE background: #fff; */
                 background: var(--light-header); /* Use your theme variable */
             }
         }
-        /* Dracula Dark Theme */
+
+        /* =========================
+           DARK THEME OVERRIDES
+           ========================= */
         .dark-theme, .dark-theme body {
             background-color: var(--dark-bg);
             color: var(--dark-text);
@@ -312,7 +331,6 @@
         .dark-theme a:hover {
             color: var(--dark-link-hover);
         }
-        /* Dracula Dark Theme for footer */
         .dark-theme footer {
             background: var(--dark-header) !important;
             color: var(--dark-text);
@@ -325,7 +343,10 @@
         .dark-theme footer a:hover {
             color: var(--dark-link-hover);
         }
-        /* Blinking cursor CSS */
+
+        /* =========================
+           SUBTITLE BLINKING CURSOR
+           ========================= */
         .subtitle-cursor {
             display: inline-block;
             animation: blink 1s steps(1) infinite;
@@ -338,7 +359,9 @@
     </style>
 </head>
 <body class="dark-theme">
-
+    <!--
+        HEADER: Contains navigation, theme toggle, and menu button for mobile.
+    -->
     <header>
         <button class="menu-toggle" aria-label="Open menu">&#9776;</button>
         <button class="theme-toggle" aria-label="Toggle theme">theme</button>
@@ -350,8 +373,12 @@
         </nav>
     </header>
 
+    <!--
+        MAIN: Contains the site title, animated subtitle, and all main sections.
+    -->
     <main>
         <div class="site-title">example portfolio site</div>
+        <!-- Animated subtitle below the title -->
         <div class="site-subtitle" id="site-subtitle">web developer</div>
         <section id="about">
             <h2>#about</h2>
@@ -375,6 +402,10 @@
             <p>git, gitHub</p>
         </section>
     </main>
+
+    <!--
+        FOOTER: Contains external links and a "top" link.
+    -->
     <footer>
         <section id="links">
             <p><a href="https://github.com/karlsune">github</a></p>
@@ -383,9 +414,13 @@
         </section>
     </footer>
 
-
+    <!--
+        JAVASCRIPT: Handles theme toggle, mobile menu, and animated subtitle.
+    -->
     <script>
-        // Theme toggle
+        // =========================
+        // THEME TOGGLE BUTTON
+        // =========================
         const themeToggle = document.querySelector('.theme-toggle');
         function updateThemeIcon() {
             themeToggle.textContent = document.body.classList.contains('dark-theme') ? '🌙' : '☀️';
@@ -396,7 +431,9 @@
         });
         updateThemeIcon();
 
-        // Mobile menu toggle
+        // =========================
+        // MOBILE MENU TOGGLE
+        // =========================
         const menuToggle = document.querySelector('.menu-toggle');
         const nav = document.querySelector('header nav');
         menuToggle.addEventListener('click', () => {
@@ -410,7 +447,9 @@
             });
         });
 
-        // Fun subtitle rotator with typewriter effect
+        // =========================
+        // ANIMATED SUBTITLE (TYPEWRITER EFFECT)
+        // =========================
         const subtitles = [
             "web dev amateur.",
             "linux enjoyer.",
@@ -429,6 +468,7 @@
         let subtitleIndex = 0;
         const subtitleEl = document.getElementById('site-subtitle');
 
+        // Helper to set subtitle text with blinking cursor
         function setSubtitleWithCursor(text) {
             subtitleEl.innerHTML = `<span class="subtitle-text">${text}</span><span class="subtitle-cursor">▌</span>`;
         }
@@ -448,6 +488,7 @@
             type();
         }
 
+        // Cycle to next subtitle
         function nextSubtitle() {
             subtitleIndex = (subtitleIndex + 1) % subtitles.length;
             typeSubtitle(subtitles[subtitleIndex], () => {
@@ -455,7 +496,7 @@
             });
         }
 
-        // Start the animation
+        // Start the animation on page load
         typeSubtitle(subtitles[subtitleIndex], () => {
             setTimeout(nextSubtitle, 1200);
         });
