@@ -130,21 +130,54 @@
         section#about {
             margin-top: 0;
         }
+        /* Footer styled like header */
         footer {
             width: 100vw;
-            max-width: 100vw;
-            background: #fff;
-            border-top: 1px solid #b3d1fa;
-            border-radius: 0;
-            box-shadow: none;
-            padding: 1rem 0;
+            min-height: 44px;
+            background: var(--light-header);
+            color: var(--light-text);
             display: flex;
-            flex-direction: column;
             align-items: center;
-            margin-top: auto;
-            left: 0;
-            right: 0;
+            justify-content: center;
             position: relative;
+            box-shadow: 0 -2px 8px rgba(25, 118, 210, 0.07);
+            border-top: 1px solid #b3d1fa;
+            padding: 0 1rem;
+            margin-top: auto;
+        }
+        footer section {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            background: none;
+            box-shadow: none;
+            border-radius: 0;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+        footer h2 {
+            display: none;
+        }
+        footer p {
+            margin: 0;
+            font-size: 1rem;
+            display: inline;
+        }
+        footer a {
+            color: var(--light-accent);
+            text-decoration: none;
+            font-weight: 700;
+            margin: 0 0.5rem;
+            transition: color 0.2s;
+        }
+        footer a:hover {
+            color: #1565c0;
+            text-decoration: underline;
         }
         @media (max-width: 900px) and (min-width: 601px) {
             section {
@@ -264,6 +297,19 @@
         .dark-theme a:hover {
             color: var(--dark-link-hover);
         }
+        /* Dracula Dark Theme for footer */
+        .dark-theme footer {
+            background: var(--dark-header);
+            color: var(--dark-text);
+            border-top: 1px solid #44475a;
+            box-shadow: 0 -2px 8px rgba(139, 233, 253, 0.07);
+        }
+        .dark-theme footer a {
+            color: var(--dark-link);
+        }
+        .dark-theme footer a:hover {
+            color: var(--dark-link-hover);
+        }
     </style>
 </head>
 <body>
@@ -307,7 +353,6 @@
     
     <footer>
         <section id="links">
-            <h2>#links</h2>
             <p><a href="">github</a></p>
             <p><a href="">linkedin</a></p>
             <p><a href="#top">top</a></p>
