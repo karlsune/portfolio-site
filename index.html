@@ -4,131 +4,273 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Portfolio Site | karlsune</title>
-</head>
-<style>
-    html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-    }
-    body {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        font-family: system-ui, sans-serif;
-        background: #f0f0f0;
-        color: #333;
-    }
-    header, main, footer {
-        width: 100%;
-        max-width: 600px;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    header {
-        padding: 1rem 0;
-        background: #f0f0f0;
-        border-bottom: 1px solid #ccc;
-    }
-    header h1, header p {
-        text-align: center;
-        width: 100%;
-    }
-    header nav {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.5rem;
-        width: 100%;
-    }
-    header nav a {
-        text-decoration: none;
-        color: #333;
-        font-size: 1.1rem;
-    }
-    header nav a:hover {
-        text-decoration: underline;
-    }
-    header .theme-toggle, header .menu-btn {
-        align-self: center;
-        margin: 0.5rem 0;
-    }
-    main {
-        padding: 1rem 0;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    section {
-        width: 100%;
-        max-width: 600px;
-        margin-bottom: 2rem;
-        text-align: center;
-    }
-    section h2 {
-        font-size: 1.5rem;
-        margin-bottom: 0.5rem;
-    }
-    section p {
-        margin: 0.5rem 0;
-    }
-    footer {
-        padding: 1rem 0;
-        background: #f0f0f0;
-        border-top: 1px solid #ccc;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    footer section {
-        width: 100%;
-        text-align: center;
-    }
-    .cursor {
-        display: inline-block;
-        width: 10px;
-        height: 20px;
-        background-color: black;
-        animation: blink 1s infinite;
-    }
-    @keyframes blink {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0; }
-    }
-    /* Responsive: everything is already stacked, just adjust padding for small screens */
-    @media (max-width: 600px) {
-        header, main, footer, section {
-            max-width: 100vw;
-            padding-left: 0.5rem;
-            padding-right: 0.5rem;
+    <!-- JetBrains Mono font -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --light-bg: #e3f0ff;
+            --light-header: #b3d1fa;
+            --light-accent: #1976d2;
+            --light-text: #222;
+            --dark-bg: #282a36;
+            --dark-header: #44475a;
+            --dark-accent: #8be9fd;
+            --dark-text: #f8f8f2;
+            --dark-link: #50fa7b;
+            --dark-link-hover: #bd93f9;
         }
-    }
-    /* Dark theme support */
-    .dark-theme, .dark-theme body {
-        background-color: #121212;
-        color: #fff;
-    }
-    .dark-theme header, .dark-theme footer {
-        background-color: #1e1e1e;
-        border-color: #333;
-    }
-    .dark-theme header nav a, .dark-theme footer h2, .dark-theme footer p {
-        color: #fff;
-    }
-</style>
-
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: var(--light-bg);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--light-text);
+            background: var(--light-bg);
+        }
+        header {
+            width: 100vw;
+            min-height: 44px;
+            background: var(--light-header);
+            color: var(--light-text);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 2px 8px rgba(25, 118, 210, 0.07);
+            padding: 0 1rem;
+            border-bottom: 1px solid #b3d1fa;
+        }
+        .site-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 2rem 0 1rem 0;
+            text-align: center;
+            letter-spacing: 0.04em;
+            color: var(--light-accent);
+        }
+        .theme-toggle {
+            font-size: 1.2rem;
+            padding: 0.3rem 0.7rem;
+            border: none;
+            border-radius: 8px;
+            background: var(--light-accent);
+            color: #fff;
+            margin-left: 0.5rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .theme-toggle:hover {
+            background: #1565c0;
+        }
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: var(--light-accent);
+            margin-left: 0.5rem;
+            cursor: pointer;
+        }
+        nav {
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+            align-items: center;
+            justify-content: flex-end;
+        }
+        nav a {
+            text-decoration: none;
+            color: var(--light-accent);
+            font-size: 1.05rem;
+            padding: 0.3rem 0.7rem;
+            border-radius: 8px;
+            transition: background 0.2s, color 0.2s;
+            font-weight: 700;
+        }
+        nav a:hover {
+            background: #e3f0ff;
+            color: #1565c0;
+        }
+        main {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        section {
+            width: 100%;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(25, 118, 210, 0.07);
+            margin-bottom: 1.5rem;
+            padding: 1.5rem 1rem;
+            text-align: center;
+        }
+        section h2 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--light-accent);
+        }
+        section p {
+            margin: 0.5rem 0;
+            font-size: 1rem;
+        }
+        section#about {
+            margin-top: 0;
+        }
+        footer {
+            width: 100vw;
+            max-width: 100vw;
+            background: #fff;
+            border-top: 1px solid #b3d1fa;
+            border-radius: 0;
+            box-shadow: none;
+            padding: 1rem 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: auto;
+            left: 0;
+            right: 0;
+            position: relative;
+        }
+        @media (max-width: 900px) and (min-width: 601px) {
+            section {
+                border-radius: 10px;
+                padding: 1.2rem 0.5rem;
+            }
+            .site-title {
+                font-size: 1.5rem;
+            }
+        }
+        @media (max-width: 600px) {
+            header, main, footer, section {
+                max-width: 100vw;
+                border-radius: 0;
+                box-shadow: none;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+            header {
+                min-height: 38px;
+                padding: 0 0.5rem;
+            }
+            .theme-toggle {
+                font-size: 1rem;
+                padding: 0.2rem 0.5rem;
+            }
+            .site-title {
+                font-size: 1.15rem;
+                margin: 1.2rem 0 0.7rem 0;
+            }
+            section {
+                margin-bottom: 1rem;
+                padding: 1rem 0.2rem;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            nav {
+                position: absolute;
+                top: 44px;
+                left: 0;
+                width: 100vw;
+                background: var(--light-header);
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0;
+                margin: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s;
+                z-index: 99;
+                border-bottom: 1px solid #b3d1fa;
+            }
+            nav.open {
+                max-height: 300px;
+                box-shadow: 0 2px 8px rgba(25, 118, 210, 0.07);
+            }
+            nav a {
+                width: 100%;
+                font-size: 1rem;
+                padding: 0.8rem 1rem;
+                border-radius: 0;
+                border-bottom: 1px solid #b3d1fa;
+            }
+            footer {
+                max-width: 100vw;
+                border-radius: 0;
+                box-shadow: none;
+                margin-top: 1rem;
+                border-top: 1px solid #b3d1fa;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+        }
+        /* Dracula Dark Theme */
+        .dark-theme, .dark-theme body {
+            background-color: var(--dark-bg);
+            color: var(--dark-text);
+        }
+        .dark-theme header {
+            background: var(--dark-header);
+            color: var(--dark-text);
+            border-bottom: 1px solid #44475a;
+            box-shadow: 0 2px 8px rgba(139, 233, 253, 0.07);
+        }
+        .dark-theme .theme-toggle {
+            background: var(--dark-accent);
+            color: #282a36;
+        }
+        .dark-theme .theme-toggle:hover {
+            background: #50fa7b;
+            color: #282a36;
+        }
+        .dark-theme nav {
+            background: var(--dark-header);
+            border-bottom: 1px solid #44475a;
+        }
+        .dark-theme nav a {
+            color: var(--dark-link);
+            background: transparent;
+        }
+        .dark-theme nav a:hover {
+            background: #44475a;
+            color: var(--dark-link-hover);
+        }
+        .dark-theme section, .dark-theme footer {
+            background: #343746;
+            color: var(--dark-text);
+            border-color: #44475a;
+        }
+        .dark-theme section h2, .dark-theme .site-title {
+            color: var(--dark-accent);
+        }
+        .dark-theme a {
+            color: var(--dark-link);
+        }
+        .dark-theme a:hover {
+            color: var(--dark-link-hover);
+        }
+    </style>
+</head>
 <body>
 
     <header>
-        <button class="theme-toggle">theme</button>
-        <h1>Karlsune</h1>
-        <p><span id="typewriter"></span><span class="cursor"></span></p>
+        <button class="menu-toggle" aria-label="Open menu">&#9776;</button>
+        <button class="theme-toggle" aria-label="Toggle theme">☀️</button>
         <nav>
             <a href="#about">#about</a>
             <a href="#education">#education</a>
@@ -139,30 +281,28 @@
     </header>
 
     <main>
-
+        <div class="site-title">example portfolio site</div>
         <section id="about">
             <h2>#about</h2>
-            <p>hi. i'm guy</p>
+            <p>hi. i'm karlsune</p>
             <p>level: 26</p>
             <p>i'm a student at <a href="https://www.kth.se/">kth</a></p>
         </section>
-
         <section id="education">
             <h2>#education</h2>
             <p>High School Diploma</p>
         </section>
-
         <section id="experience">
             <h2>#experience</h2>
             <p>none,</p>
-            <p>but I'm looking for an 'praktikplats'</p>
+            <p>but I'm looking for an 'praktikplats' at a swedish company</p>
         </section>
-
         <section id="skills">
             <h2>#skills</h2>
             <p>html, css, js</p>
             <p>linux, windows</p>
             <p>git, gitHub</p>
+        </section>
     </main>
     
     <footer>
@@ -171,37 +311,34 @@
             <p><a href="">github</a></p>
             <p><a href="">linkedin</a></p>
             <p><a href="#top">top</a></p>
+        </section>
     </footer>
 
     <script>
-        const typewriterText = "Web Developer | Student | Open Source Enthusiast";
-        const typewriterElement = document.getElementById("typewriter");
-        let index = 0;
-
-        function type() {
-            if (index < typewriterText.length) {
-                typewriterElement.textContent += typewriterText.charAt(index);
-                index++;
-                setTimeout(type, 100);
-            }
-        }
-
-        type();
-
         // Theme toggle
         const themeToggle = document.querySelector('.theme-toggle');
         themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark-theme');
-            themeToggle.textContent = document.body.classList.contains('dark-theme') ? '🌙' : '☀️';
+            if (document.body.classList.contains('dark-theme')) {
+                themeToggle.textContent = '🌙';
+            } else {
+                themeToggle.textContent = '☀️';
+            }
         });
 
-        // Menu button
-        const menuBtn = document.querySelector('.menu-btn');
-        menuBtn.addEventListener('click', () => {
-            document.querySelector('nav').classList.toggle('active');
+        // Mobile menu toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('header nav');
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('open');
+        });
+
+        // Close menu on nav link click (mobile)
+        document.querySelectorAll('header nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('open');
+            });
         });
     </script>
-
-
 </body>
 </html>
