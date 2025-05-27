@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Portfolio Site | karlsune</title>
+    <title>portfolio Site | karlsune</title>
     <!-- JetBrains Mono font -->
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -18,6 +18,9 @@
             --dark-text: #f8f8f2;
             --dark-link: #50fa7b;
             --dark-link-hover: #bd93f9;
+        }
+        footer section {
+        background: var(--dark-header);
         }
         html, body {
             height: 100%;
@@ -147,7 +150,6 @@
         footer {
             width: 100%;
             min-height: 44px;
-            background: var(--light-header);
             color: var(--light-text);
             display: flex;
             align-items: center;
@@ -157,6 +159,7 @@
             border-top: 1px solid #b3d1fa;
             padding: 0 1rem;
             margin-top: auto;
+            background: var(--light-header); /* Use your theme variable */
         }
         footer section {
             display: flex;
@@ -260,6 +263,8 @@
                 border-top: 1px solid #b3d1fa;
                 padding-left: 0.5rem;
                 padding-right: 0.5rem;
+                /* REMOVE background: #fff; */
+                background: var(--light-header); /* Use your theme variable */
             }
         }
         /* Dracula Dark Theme */
@@ -309,7 +314,7 @@
         }
         /* Dracula Dark Theme for footer */
         .dark-theme footer {
-            background: var(--dark-header);
+            background: var(--dark-header) !important;
             color: var(--dark-text);
             border-top: 1px solid #44475a;
             box-shadow: 0 -2px 8px rgba(139, 233, 253, 0.07);
@@ -336,7 +341,7 @@
 
     <header>
         <button class="menu-toggle" aria-label="Open menu">&#9776;</button>
-        <button class="theme-toggle" aria-label="Toggle theme">☀️</button>
+        <button class="theme-toggle" aria-label="Toggle theme">theme</button>
         <nav>
             <a href="#about">#about</a>
             <a href="#education">#education</a>
@@ -350,9 +355,9 @@
         <div class="site-subtitle" id="site-subtitle">web developer</div>
         <section id="about">
             <h2>#about</h2>
-            <p>hi. i'm karlsune</p>
+            <p>karlsune</p>
             <p>level: 26</p>
-            <p>i'm a student at <a href="https://www.kth.se/">kth</a></p>
+            <p>i'm studying at <a href="https://www.kth.se/">kth</a></p>
         </section>
         <section id="education">
             <h2>#education</h2>
@@ -361,7 +366,7 @@
         <section id="experience">
             <h2>#experience</h2>
             <p>none,</p>
-            <p>but I'm looking for 'praktikplats'</p>
+            <p>i'm looking for 'praktikplats'</p>
         </section>
         <section id="skills">
             <h2>#skills</h2>
@@ -370,14 +375,14 @@
             <p>git, gitHub</p>
         </section>
     </main>
-    
     <footer>
         <section id="links">
-            <p><a href="">github</a></p>
-            <p><a href="">linkedin</a></p>
+            <p><a href="https://github.com/karlsune">github</a></p>
+            <p><a href="https://www.linkedin.com/in/karlsune/">linkedin</a></p>
             <p><a href="#top">top</a></p>
         </section>
     </footer>
+
 
     <script>
         // Theme toggle
