@@ -57,6 +57,19 @@
             letter-spacing: 0.04em;
             color: var(--light-accent);
         }
+        .site-subtitle {
+            font-size: 1.1rem;
+            color: var(--light-accent);
+            margin-bottom: 1.5rem;
+            min-height: 1.5em;
+            transition: color 0.4s;
+            text-align: center;
+            opacity: 0.85;
+            letter-spacing: 0.01em;
+        }
+        .dark-theme .site-subtitle {
+            color: var(--dark-accent);
+        }
         .theme-toggle {
             font-size: 1.2rem;
             padding: 0.3rem 0.7rem;
@@ -201,6 +214,10 @@
                 font-size: 1.15rem;
                 margin: 1.2rem 0 0.7rem 0;
             }
+            .site-subtitle {
+                font-size: 1rem;
+                margin: 0 0 1.2rem 0;
+            }
             section {
                 margin-bottom: 1rem;
                 padding: 1rem 0.2rem;
@@ -303,6 +320,18 @@
         .dark-theme footer a:hover {
             color: var(--dark-link-hover);
         }
+        /* Add to your <style> section if you want a blinking cursor */
+        .site-subtitle::after {
+            content: '';
+            display: inline-block;
+            width: 0.7ch;
+            animation: blink 1s steps(1) infinite;
+            vertical-align: baseline;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
     </style>
 </head>
 <body>
@@ -321,6 +350,7 @@
 
     <main>
         <div class="site-title">example portfolio site</div>
+        <div class="site-subtitle" id="site-subtitle">web developer</div>
         <section id="about">
             <h2>#about</h2>
             <p>hi. i'm karlsune</p>
@@ -377,6 +407,49 @@
                 nav.classList.remove('open');
             });
         });
+
+        // Fun subtitle rotator with typewriter effect
+        const subtitles = [
+            "web developer",
+            "linux enjoyer",
+            "open source fan",
+            "minimalist",
+            "student @ kth",
+            "always learning",
+            "vim, but sometimes nano",
+            "dark theme enthusiast"
+        ];
+        let subtitleIndex = 0;
+        const subtitleEl = document.getElementById('site-subtitle');
+
+        function typeSubtitle(text, cb) {
+            subtitleEl.textContent = "";
+            let i = 0;
+            function type() {
+                if (i <= text.length) {
+                    subtitleEl.textContent = text.slice(0, i) + (i % 2 === 0 ? "▌" : " ");
+                    i++;
+                    setTimeout(type, 55);
+                } else {
+                    subtitleEl.textContent = text; // Remove cursor at end
+                    if (cb) setTimeout(cb, 900);
+                }
+            }
+            type();
+        }
+
+        function nextSubtitle() {
+            subtitleIndex = (subtitleIndex + 1) % subtitles.length;
+            typeSubtitle(subtitles[subtitleIndex], () => {
+                setTimeout(nextSubtitle, 1200);
+            });
+        }
+
+        // Start the animation
+        typeSubtitle(subtitles[subtitleIndex], () => {
+            setTimeout(nextSubtitle, 1200);
+        });
+
     </script>
 </body>
 </html>
