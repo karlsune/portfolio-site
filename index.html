@@ -384,6 +384,12 @@
             background: rgba(40,42,54,0.98);
             color: #f8f8f2;
             font-family: 'JetBrains Mono', monospace;
+            opacity: 1;
+            transition: opacity 0.4s;
+        }
+        #content-warning-modal.hide {
+            opacity: 0;
+            pointer-events: none;
         }
         #content-warning-modal .modal-inner {
             background: #282a36;
