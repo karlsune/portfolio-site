@@ -3,7 +3,6 @@
     It is designed to be minimalistic and easy to navigate.
     The site is built with HTML, CSS, and JavaScript.
     It is responsive and works on all devices.
-    The site is hosted on GitHub Pages.
     The source code is available on GitHub.
     Feel free to contribute and make it better!
     The site is licensed under the GNU GPLv3 license.
