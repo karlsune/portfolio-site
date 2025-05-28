@@ -1,3 +1,4 @@
+![Demo of portfolio site](media/showcase.gif)    
     This is a simple portfolio site for karlsune. ###
     It is designed to be minimalistic and easy to navigate.
     The site is built with HTML, CSS, and JavaScript.
