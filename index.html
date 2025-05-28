@@ -135,7 +135,7 @@
             padding: 1rem 0;
         }
         .site-title {
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
             font-weight: 700;
             margin: 2rem 0 1rem 0;
             text-align: center;
@@ -180,9 +180,27 @@
         .skills-list {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 1rem;
+            gap: 1.2rem;
             padding: 0;
             list-style: none;
+        }
+        .skills-list li {
+            background: #fff;
+            color: var(--light-accent);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(25, 118, 210, 0.10);
+            padding: 1.1rem 0.5rem;
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-align: center;
+            transition: transform 0.15s, box-shadow 0.15s;
+            border: 1px solid #e3f0ff;
+        }
+        .skills-list li:hover,
+        .skills-list li:focus-visible {
+            transform: translateY(-4px) scale(1.04);
+            box-shadow: 0 6px 18px rgba(25, 118, 210, 0.18);
+            outline: none;
         }
 
         /* =========================
@@ -429,6 +447,16 @@
         button:focus-visible, a:focus-visible {
             outline: 2px solid var(--light-accent);
             outline-offset: 2px;
+        }
+
+        /* =========================
+           AUTO DETECT DARK MODE
+           ========================= */
+        @media (prefers-color-scheme: dark) {
+          body:not(.dark-theme):not(.light-theme) {
+            background: var(--dark-bg);
+            color: var(--dark-text);
+          }
         }
     </style>
     <!-- favico -->
