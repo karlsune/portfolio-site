@@ -177,6 +177,13 @@
         section#about {
             margin-top: 0;
         }
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            padding: 0;
+            list-style: none;
+        }
 
         /* =========================
            FOOTER
@@ -415,6 +422,14 @@
             font-weight: 700;
             cursor: pointer;
         }
+
+        /* =========================
+           FOCUS INDICATORS
+           ========================= */
+        button:focus-visible, a:focus-visible {
+            outline: 2px solid var(--light-accent);
+            outline-offset: 2px;
+        }
     </style>
     <!-- favico -->
     <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAeH+fANjY2AD///8AcnJyAFzS5AAsPn8AKEbMAJaWlgB7jLYAP4zjAKioqAA1NTUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAzMzMAAAAAAyyuEjAAAAAyyK4hIwAAADCIruEjAAADEIyu4RIwAAMsjK7h0vAAAwiMruES8AADCIiu4dLwAAMK2ZmekjAAAy2eldVeMAADHpaVaWnwAAMF1WqWnnAAADMoZl3zAAAAADMzMwAAAAAAAAAAAAAD//wAA+B8AAPAPAADgBwAA4AcAAMADAADAAwAAwAMAAMADAADAAwAAwAMAAMADAADAAwAA4AcAAPgfAAD//wAA" rel="icon" type="image/x-icon">
@@ -477,9 +492,15 @@
         </section>
         <section id="skills">
             <h2>#skills</h2>
-            <p>html, css, js</p>
-            <p>windows, linux</p>
-            <p>git, gitHub</p>
+            <ul class="skills-list">
+                <li>html</li>
+                <li>css</li>
+                <li>js</li>
+                <li>linux</li>
+                <li>windows</li>
+                <li>git</li>
+                <li>github</li>
+            </ul>
         </section>
     </main>
 
