@@ -1,5 +1,12 @@
 <!--
 ===============================================================================
+
+    WELCOME...
+
+    THIS IS MY MONSTER...
+
+    HOPE YOU CAN ENJOY YOUR STAY
+
     LICENSE NOTICE
 
     This website is open source and free to use under the GNU General Public License v3 (GPLv3).
@@ -487,6 +494,9 @@
         </section>
     </footer>
 
+    <!-- Back to top button -->
+    <button id="back-to-top" aria-label="Back to top" style="display:none;position:fixed;bottom:2rem;right:2rem;z-index:10000;padding:0.7rem 1.2rem;border-radius:50%;background:#1976d2;color:#fff;border:none;font-size:1.5rem;box-shadow:0 2px 8px #0003;cursor:pointer;">↑</button>
+
     <!--
         JAVASCRIPT: Handles theme toggle, mobile menu, and animated subtitle.
     -->
@@ -590,9 +600,25 @@
         const acceptBtn = document.getElementById('content-warning-accept');
         if (modal && acceptBtn) {
             acceptBtn.onclick = () => {
-                modal.style.display = 'none';
+                modal.classList.add('hide');
+                setTimeout(() => { modal.style.display = 'none'; }, 400);
             };
         }
+
+        // =========================
+        // BACK TO TOP BUTTON
+        // =========================
+        const backToTop = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 200) {
+                backToTop.style.display = 'block';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
 
     </script>
 
