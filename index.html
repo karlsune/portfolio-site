@@ -334,7 +334,7 @@
            DARK THEME OVERRIDES
            ========================= */
         .dark-theme, .dark-theme body {
-            background-color: var(--dark-bg);
+            background: var(--dark-bg);
             color: var(--dark-text);
         }
         .dark-theme header {
@@ -559,14 +559,12 @@
             themeToggle.textContent = document.body.classList.contains('dark-theme') ? '🌙' : '☀️';
             themeToggle.setAttribute('aria-pressed', document.body.classList.contains('dark-theme'));
         }
-        // On load, check localStorage
         if (localStorage.getItem('theme') === 'dark') {
             document.body.classList.add('dark-theme');
         }
         updateThemeIcon();
         themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark-theme');
-            // Save preference
             localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
             updateThemeIcon();
         });
