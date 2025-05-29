@@ -31,6 +31,16 @@
         /* =========================
            CSS VARIABLES & BASE STYLES
            ========================= */
+        
+        /*Ensures padding and border are included
+        in the elements width: */
+        *,
+        *::before,
+        *::after {
+        box-sizing: border-box;
+}
+
+
         :root {
             --light-bg: #e3f0ff;
             --light-header: #b3d1fa;
@@ -59,8 +69,9 @@
            HEADER & NAVIGATION
            ========================= */
         header {
-            width: 100%;
-            min-height: 44px;
+            width: 100vw;
+            max-width: 100vw;
+            min-height: 64px;
             background: var(--light-header);
             color: var(--light-text);
             display: flex;
@@ -70,7 +81,7 @@
             top: 0;
             z-index: 10;
             box-shadow: 0 2px 8px rgba(25, 118, 210, 0.07);
-            padding: 0 1rem;
+            
             border-bottom: 1px solid #b3d1fa;
         }
         .menu-toggle {
@@ -184,7 +195,8 @@
            FOOTER
            ========================= */
         footer {
-            width: 100%;
+            width: 100vw;
+            max-width: 100vw;
             min-height: 44px;
             color: var(--light-text);
             display: flex;
@@ -246,7 +258,7 @@
                 padding-right: 0.5rem;
             }
             header {
-                min-height: 38px;
+                min-height: 64px;
                 padding: 0 0.5rem;
             }
             .site-title {
@@ -362,15 +374,7 @@
             outline-offset: 2px;
         }
 
-        /* =========================
-           AUTO DETECT DARK MODE
-           ========================= */
-        @media (prefers-color-scheme: dark) {
-          body:not(.dark-theme):not(.light-theme) {
-            background: var(--dark-bg);
-            color: var(--dark-text);
-          }
-        }
+        
     </style>
     <!-- favico -->
     <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAeH+fANjY2AD///8AcnJyAFzS5AAsPn8AKEbMAJaWlgB7jLYAP4zjAKioqAA1NTUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAzMzMAAAAAAyyuEjAAAAAyyK4hIwAAADCIruEjAAADEIyu4RIwAAMsjK7h0vAAAwiMruES8AADCIiu4dLwAAMK2ZmekjAAAy2eldVeMAADHpaVaWnwAAMF1WqWnnAAADMoZl3zAAAAADMzMwAAAAAAAAAAAAAD//wAA+B8AAPAPAADgBwAA4AcAAMADAADAAwAAwAMAAMADAADAAwAAwAMAAMADAADAAwAA4AcAAPgfAAD//wAA" rel="icon" type="image/x-icon">
