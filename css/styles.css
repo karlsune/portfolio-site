@@ -1,5 +1,8 @@
 /* =========================
 CSS VARIABLES & BASE STYLES
+
+DISCLAIMER:
+ALL STYLE IS AIGC.
 ========================= */
 
 /*Ensures padding and border are included
@@ -354,3 +357,24 @@ border-radius: 0;
 padding: 0;
 }
 
+/*Noscript warning styler - AIGC*/
+#noScriptWarn {
+    background:#ffbaba;color:#222;padding:1.5rem;text-align:center;font-family:'JetBrains Mono',monospace;
+}
+
+/*Back to top button styling - AIGC*/
+#back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 10000;
+    padding: 0.7rem 1.2rem;
+    border-radius: 50%;
+    background: #1976d2;
+    color: #fff;
+    border: none;
+    font-size: 1.5rem;
+    box-shadow: 0 2px 8px #0003;
+    cursor: pointer;
+}
