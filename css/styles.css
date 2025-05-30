@@ -1,0 +1,356 @@
+/* =========================
+CSS VARIABLES & BASE STYLES
+========================= */
+
+/*Ensures padding and border are included
+in the elements width: */
+*,
+*::before,
+*::after {
+box-sizing: border-box;
+}
+
+
+:root {
+--light-bg: #e3f0ff;
+--light-header: #b3d1fa;
+--light-accent: #1976d2;
+--light-text: #222;
+}
+
+/* Remove default margin/padding, set font */
+html, body {
+height: 100%;
+margin: 0;
+padding: 0;
+background: var(--light-bg);
+font-family: 'JetBrains Mono', monospace;
+}
+body {
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+color: var(--light-text);
+background: var(--light-bg);
+}
+
+/* =========================
+HEADER & NAVIGATION
+========================= */
+header {
+width: 100vw;
+max-width: 100vw;
+min-height: 64px;
+background: var(--light-header);
+color: var(--light-text);
+display: flex;
+align-items: center;
+justify-content: space-between;
+position: sticky;
+top: 0;
+z-index: 10;
+box-shadow: 0 2px 8px rgba(25, 118, 210, 0.07);
+
+border-bottom: 1px solid #b3d1fa;
+}
+.menu-toggle {
+display: none;
+background: none;
+border: none;
+font-size: 2rem;
+color: var(--light-accent);
+margin-left: 0.5rem;
+cursor: pointer;
+}
+nav {
+display: flex;
+flex-direction: row;
+gap: 1rem;
+align-items: center;
+justify-content: flex-end;
+}
+nav a {
+text-decoration: none;
+color: var(--light-accent);
+font-size: 1.05rem;
+padding: 0.3rem 0.7rem;
+border-radius: 8px;
+transition: background 0.2s, color 0.2s;
+font-weight: 700;
+}
+nav a:hover {
+background: #e3f0ff;
+color: #1565c0;
+}
+
+/* =========================
+MAIN CONTENT & SECTIONS
+========================= */
+main {
+width: 100%;
+max-width: 600px;
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 1rem 0;
+}
+.site-title {
+font-size: clamp(1.5rem, 4vw, 2.5rem);
+font-weight: 700;
+margin: 2rem 0 1rem 0;
+text-align: center;
+letter-spacing: 0.04em;
+color: var(--light-accent);
+}
+.site-subtitle {
+font-size: 1.1rem;
+color: var(--light-accent);
+margin-bottom: 1.5rem;
+min-height: 1.5em;
+transition: color 0.4s;
+text-align: center;
+opacity: 0.85;
+letter-spacing: 0.01em;
+}
+section {
+width: 100%;
+background: #fff;
+border-radius: 16px;
+box-shadow: 0 2px 8px rgba(25, 118, 210, 0.07);
+margin-bottom: 1.5rem;
+padding: 1.5rem 1rem;
+text-align: center;
+}
+section h2 {
+font-size: 1.15rem;
+font-weight: 600;
+margin-bottom: 0.5rem;
+color: var(--light-accent);
+}
+section p {
+margin: 0.5rem 0;
+font-size: 1rem;
+}
+section#about {
+margin-top: 0;
+}
+.skills-list {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+gap: 1.2rem;
+padding: 0;
+list-style: none;
+}
+.skills-list li {
+background: #fff;
+color: var(--light-accent);
+border-radius: 12px;
+box-shadow: 0 2px 8px rgba(25, 118, 210, 0.10);
+padding: 1.1rem 0.5rem;
+font-size: 1.05rem;
+font-weight: 700;
+text-align: center;
+transition: transform 0.15s, box-shadow 0.15s;
+border: 1px solid #e3f0ff;
+}
+.skills-list li:hover,
+.skills-list li:focus-visible {
+transform: translateY(-4px) scale(1.04);
+box-shadow: 0 6px 18px rgba(25, 118, 210, 0.18);
+outline: none;
+}
+
+/* =========================
+FOOTER
+========================= */
+footer {
+width: 100vw;
+max-width: 100vw;
+min-height: 44px;
+color: var(--light-text);
+display: flex;
+align-items: center;
+justify-content: center;
+position: relative;
+box-shadow: 0 -2px 8px rgba(25, 118, 210, 0.07);
+border-top: 1px solid #b3d1fa;
+padding: 0 1rem;
+margin-top: auto;
+background: var(--light-header); /* Use your theme variable */
+}
+footer section {
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: center;
+gap: 2rem;
+background: none;
+padding: 0;
+margin: 0;
+text-align: center;
+}
+footer p {
+margin: 0;
+font-size: 1rem;
+display: inline;
+}
+footer a {
+color: var(--light-accent);
+text-decoration: none;
+font-weight: 700;
+margin: 0 0.5rem;
+transition: color 0.2s;
+}
+footer a:hover {
+color: #1565c0;
+text-decoration: underline;
+}
+
+/* =========================
+RESPONSIVE DESIGN
+========================= */
+@media (max-width: 900px) and (min-width: 601px) {
+section {
+    border-radius: 10px;
+    padding: 1.2rem 0.5rem;
+}
+.site-title {
+    font-size: 1.5rem;
+}
+}
+@media (max-width: 600px) {
+header, main, footer, section {
+    max-width: 100vw;
+    border-radius: 0;
+    box-shadow: none;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+header {
+    min-height: 64px;
+    padding: 0 0.5rem;
+}
+.site-title {
+    font-size: 1.15rem;
+    margin: 1.2rem 0 0.7rem 0;
+}
+.site-subtitle {
+    font-size: 1rem;
+    margin: 0 0 1.2rem 0;
+}
+section {
+    margin-bottom: 1rem;
+    padding: 1rem 0.2rem;
+}
+.menu-toggle {
+    display: block;
+}
+nav {
+    position: absolute;
+    top: 44px;
+    left: 0;
+    width: 100vw;
+    background: var(--light-header);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    margin: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s;
+    z-index: 99;
+    border-bottom: 1px solid #b3d1fa;
+}
+nav.open {
+    max-height: 300px;
+    box-shadow: 0 2px 8px rgba(25, 118, 210, 0.07);
+}
+nav a {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.8rem 1rem;
+    border-radius: 0;
+    border-bottom: 1px solid #b3d1fa;
+}
+footer {
+    max-width: 100vw;
+    border-radius: 0;
+    box-shadow: none;
+    margin-top: 1rem;
+    border-top: 1px solid #b3d1fa;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    background: var(--light-header); /* Use your theme variable */
+}
+}
+
+/* =========================
+SUBTITLE BLINKING CURSOR
+========================= */
+.subtitle-cursor {
+display: inline-block;
+animation: blink 1s steps(1) infinite;
+vertical-align: baseline;
+}
+@keyframes blink {
+0%, 100% { opacity: 1; }
+50% { opacity: 0; }
+}
+
+/* =========================
+CONTENT WARNING MODAL
+========================= */
+#content-warning-modal {
+position: fixed;
+z-index: 9999;
+inset: 0;
+display: flex;
+align-items: center;
+justify-content: center;
+background: rgba(40,42,54,0.98);
+color: #f8f8f2;
+font-family: 'JetBrains Mono', monospace;
+opacity: 1;
+transition: opacity 0.4s;
+}
+#content-warning-modal.hide {
+opacity: 0;
+pointer-events: none;
+}
+#content-warning-modal .modal-inner {
+background: #282a36;
+padding: 2rem 2.5rem;
+border-radius: 12px;
+max-width: 90vw;
+box-shadow: 0 4px 32px #000a;
+}
+#content-warning-modal button {
+font-size: 1rem;
+padding: 0.5rem 1.5rem;
+border: none;
+border-radius: 8px;
+background: #50fa7b;
+color: #282a36;
+font-weight: 700;
+cursor: pointer;
+}
+
+/* =========================
+FOCUS INDICATORS
+========================= */
+button:focus-visible, a:focus-visible {
+outline: 2px solid var(--light-accent);
+outline-offset: 2px;
+}
+
+/* =========================
+github stats case theming
+========================= */
+section#stats {
+background: none;
+box-shadow: none;
+border-radius: 0;
+padding: 0;
+}
+
