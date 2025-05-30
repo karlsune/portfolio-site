@@ -22,18 +22,13 @@ function typeSubtitle(text, cb) {
 }
 
 // Get a random index, avoiding immediate repeats
-function getRandomSubtitleIndex(prevIndex, arrLength) {
-  let idx;
-  do {
-    idx = Math.floor(Math.random() * arrLength);
-  } while (arrLength > 1 && idx === prevIndex);
-  return idx;
+function getRandomSubtitleIndex(arrLength) {
+  return Math.floor(Math.random() * arrLength);
 }
 
 // Cycle to next random subtitle
 function nextSubtitle() {
-  const prevIndex = subtitleIndex;
-  subtitleIndex = getRandomSubtitleIndex(prevIndex, subtitles.length);
+  subtitleIndex = getRandomSubtitleIndex(subtitles.length);
   typeSubtitle(subtitles[subtitleIndex], () => {
     setTimeout(nextSubtitle, 1200);
   });
