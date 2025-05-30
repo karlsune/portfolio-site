@@ -1,0 +1,17 @@
+const subtitles = [
+  "web dev amateur.",
+  "linux enjoyer.",
+  "open source.",
+  "maximalist.",
+  "student @ kth.org.",
+  "learning.",
+  "i use arch btw.",
+  "noob dev.",
+  "looking for 'praktikplats'.",
+  "tech.",
+  "stuff.",
+  "will code for coinies.",
+  "all i want is monies.",
+  "gimme monies.",
+  "i love money.",
+];

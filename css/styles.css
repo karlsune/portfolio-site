@@ -15,11 +15,19 @@ ALL STYLE IS INITIALLY AIGC.
   box-sizing: border-box;
 }
 
+/*init theme variables*/
 :root {
   --light-bg: #e3f0ff;
   --light-header: #b3d1fa;
   --light-accent: #1976d2;
   --light-text: #222;
+}
+/*init dark theme variables*/
+body.dark-theme {
+  --light-bg: #282a36;
+  --light-header: #44475a;
+  --light-accent: #8be9fd;
+  --light-text: #f8f8f2;
 }
 
 /* Remove default margin/padding, set font */
@@ -73,7 +81,8 @@ nav {
   flex-direction: row;
   gap: 1rem;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
+  width: 95%;
 }
 nav a {
   text-decoration: none;
@@ -375,20 +384,23 @@ Noscript warning styler - AIGC
 }
 
 /*
-Back to top button styling - AIGC
+Back to top button styling
 */
 #back-to-top {
   display: none;
   position: fixed;
+  padding: 1rem;
   bottom: 2rem;
   right: 2rem;
   z-index: 10000;
-  padding: 0.7rem 1.2rem;
-  border-radius: 50%;
-  background: #1976d2;
-  color: #fff;
+  
+  border-radius: 100%;
+  background: none;
+  color: none;
   border: none;
+  /* touch development border
+  border: 2px solid black;
+  */
   font-size: 1.5rem;
-  box-shadow: 0 2px 8px #0003;
   cursor: pointer;
 }

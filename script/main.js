@@ -19,26 +19,9 @@ document.querySelectorAll("header nav a").forEach((link) => {
   });
 });
 
-// =========================
-// ANIMATED SUBTITLE (TYPEWRITER EFFECT)
-// =========================
-const subtitles = [
-  "web dev amateur.",
-  "linux enjoyer.",
-  "open source.",
-  "maximalist.",
-  "student @ kth.org.",
-  "learning.",
-  "i use arch btw.",
-  "noob dev.",
-  "looking for 'praktikplats'.",
-  "tech.",
-  "stuff.",
-  "will code for coinies.",
-  "all i want is monies.",
-  "gimme monies.",
-  "i love money.",
-];
+
+// ANIMATED SUBTITLE (TYPEWRITER EFFECT) AIGC
+
 let subtitleIndex = 0;
 const subtitleEl = document.getElementById("site-subtitle");
 
@@ -75,21 +58,8 @@ typeSubtitle(subtitles[subtitleIndex], () => {
   setTimeout(nextSubtitle, 1200);
 });
 
-// Content Warning Modal logic
-const modal = document.getElementById("content-warning-modal");
-const acceptBtn = document.getElementById("content-warning-accept");
-if (modal && acceptBtn) {
-  acceptBtn.onclick = () => {
-    modal.classList.add("hide");
-    setTimeout(() => {
-      modal.style.display = "none";
-    }, 400);
-  };
-}
 
-// =========================
-// BACK TO TOP BUTTON
-// =========================
+// back to top button function
 const backToTop = document.getElementById("back-to-top");
 window.addEventListener("scroll", () => {
   if (window.scrollY > 200) {
@@ -101,3 +71,18 @@ window.addEventListener("scroll", () => {
 backToTop.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
+
+// theme toggle function
+const themeToggleBtn = document.getElementById("theme-toggle");
+themeToggleBtn.addEventListener("click", () => {
+  document.body.classList.toggle("dark-theme");
+  // Optionally, save preference
+  localStorage.setItem(
+    "theme",
+    document.body.classList.contains("dark-theme") ? "dark" : "light"
+  );
+});
+// On load, restore preference
+if (localStorage.getItem("theme") === "dark") {
+  document.body.classList.add("dark-theme");
+}
