@@ -69,18 +69,3 @@ window.addEventListener("scroll", () => {
 backToTop.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
-
-// theme toggle function
-const themeToggleBtn = document.getElementById("theme-toggle");
-themeToggleBtn.addEventListener("click", () => {
-  document.body.classList.toggle("dark-theme");
-  // Optionally, save preference
-  localStorage.setItem(
-    "theme",
-    document.body.classList.contains("dark-theme") ? "dark" : "light",
-  );
-});
-// On load, restore preference
-if (localStorage.getItem("theme") === "dark") {
-  document.body.classList.add("dark-theme");
-}
