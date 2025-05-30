@@ -14,12 +14,11 @@ Simply download the HTML file! the entire project is contained within a single f
 Edit sections style and the main content divs to your liking. You are also able to change the subtitles in the script section of the file.
 Use self hosting, github pages, cloudflare pages etc to push the file to the web.
 
-
 Features:
 JS string manipulation demo
 Theme select/switcher
 
-Issues: 
+Issues:
 Unknown graphical bug when viewing the site in phone viewport with dark theme enabled.
 
 Thank you for visiting my portfolio site!
