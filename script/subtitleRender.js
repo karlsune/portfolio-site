@@ -33,4 +33,3 @@ function nextSubtitle() {
     setTimeout(nextSubtitle, 1200);
   });
 }
-

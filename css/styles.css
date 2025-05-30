@@ -229,8 +229,8 @@ footer a:hover {
 RESPONSIVE DESIGN
  */
 @media (max-width: 800px) {
-  header{
-  -width: 100vw;
+  header {
+    -width: 100vw;
     border-radius: 0;
     box-shadow: none;
     padding-left: 0.5rem;
@@ -311,7 +311,6 @@ SUBTITLE BLINKING CURSOR
     opacity: 0;
   }
 }
-
 
 /* 
 FOCUS INDICATORS
