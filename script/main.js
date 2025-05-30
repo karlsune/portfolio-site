@@ -19,7 +19,6 @@ document.querySelectorAll("header nav a").forEach((link) => {
   });
 });
 
-
 // ANIMATED SUBTITLE (TYPEWRITER EFFECT) AIGC
 
 let subtitleIndex = 0;
@@ -58,7 +57,6 @@ typeSubtitle(subtitles[subtitleIndex], () => {
   setTimeout(nextSubtitle, 1200);
 });
 
-
 // back to top button function
 const backToTop = document.getElementById("back-to-top");
 window.addEventListener("scroll", () => {
@@ -79,7 +77,7 @@ themeToggleBtn.addEventListener("click", () => {
   // Optionally, save preference
   localStorage.setItem(
     "theme",
-    document.body.classList.contains("dark-theme") ? "dark" : "light"
+    document.body.classList.contains("dark-theme") ? "dark" : "light",
   );
 });
 // On load, restore preference
