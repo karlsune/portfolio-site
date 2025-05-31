@@ -1,0 +1,3 @@
+[submodule "matter-js"]
+	path = matter-js
+	url = https://github.com/liabru/matter-js.git
