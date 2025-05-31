@@ -109,7 +109,7 @@ Composite.add(world, ground);
 // Add dynamic body spawner that shoots at ground
 setInterval(() => {
   const x = Math.random() * screenwidth;
-  const y = bodySpawnYOffset; // Start from the top
+  const y = bodySpawnYOffset * (5 * Math.random()); // Start from the top in range to avoid overlap
   const radius = 20 + Math.random() * 30; // Random radius between 20 and 50
   
   const body = Bodies.circle(x, y, radius, { 
