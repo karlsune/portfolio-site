@@ -2,13 +2,21 @@
 // You can redistribute it and/or modify it under the terms of the GPL-3.0 License.
 // Copyright (C) Karl Sundström
 
-var respawnTimer = 1000; // Time in milliseconds to respawn bodies
+var updatetimer = 100; // Time in milliseconds to update the game state
+
+var difficultyfactor = 1.0; // Factor to increase difficulty over time
+
+var respawnTimer = updatetimer * 10; // Time in milliseconds to respawn bodies
+
+var gameoveracknowledged = false; // Flag to check if game over has been acknowledged by the player
+
+
 // You can change this value to control how often new bodies are spawned
 // This code uses the Matter.js physics engine to create a simple game environment
 // where bodies are spawned at the top of the screen and fall down, bouncing off the ground and walls.
 // The bodies can be clicked and dragged with the mouse.
 
-var deathTimer = 50000; // Time in milliseconds to remove all 'body' objects
+var deathTimer = updatetimer * 5000; // Time in milliseconds to remove all 'body' objects
 const bodySpawnYOffset = 50; // Y offset from the top of the screen where bodies are spawned
 
 const screenheight = window.innerHeight;
@@ -70,31 +78,28 @@ mouse.element.addEventListener("mousedown", function () {
 engine.world.gravity.y = 0; // Disable gravity for a more controlled environment
 engine.world.gravity.x = 0; // Disable horizontal gravity
 
-// Create static boundary walls
+// No boundary walls are added here.
+// To keep the game playable, you may want to handle out-of-bounds bodies manually.
+// For example, remove any body that falls off the screen:
+
+Matter.Events.on(engine, "afterUpdate", () => {
+    const bodies = Composite.allBodies(world);
+    bodies.forEach((body) => {
+        if (
+            !body.isStatic &&
+            (
+                body.position.x < -100 ||
+                body.position.x > screenwidth + 100 ||
+                body.position.y > screenheight + 100
+            )
+        ) {
+            Composite.remove(world, body);
+        }
+    });
+});
+
+// Define thickness for paddle/ground placement
 const thickness = 50;
-const walls = [
-  Bodies.rectangle(screenwidth / 2, -thickness / 2, screenwidth, thickness, {
-    isStatic: true,
-  }), // top
-  Bodies.rectangle(
-    screenwidth / 2,
-    screenheight + thickness / 2,
-    screenwidth,
-    thickness,
-    { isStatic: true },
-  ), // bottom
-  Bodies.rectangle(-thickness / 2, screenheight / 2, thickness, screenheight, {
-    isStatic: true,
-  }), // left
-  Bodies.rectangle(
-    screenwidth + thickness / 2,
-    screenheight / 2,
-    thickness,
-    screenheight,
-    { isStatic: true },
-  ), // right
-];
-Composite.add(world, walls);
 
 // Add a ground
 const ground = Bodies.rectangle(
@@ -147,9 +152,12 @@ Matter.Events.on(engine, "collisionStart", (event) => {
         if ((pair.bodyA.id === ground.id && !pair.bodyB.isStatic)) {
             console.log(`Collision detected between ground and body ${pair.bodyB.id}`);
             Composite.remove(world, pair.bodyB);
+                        playerlives--; // Decrease player lives when a body collides with the ground
+
         } else if ((pair.bodyB.id === ground.id && !pair.bodyA.isStatic)) {
             console.log(`Collision detected between ground and body ${pair.bodyA.id}`);
             Composite.remove(world, pair.bodyA);
+            playerlives--; // Decrease player lives when a body collides with the ground
         }
     });
 });
@@ -201,6 +209,7 @@ Matter.Events.on(engine, "beforeUpdate", function () {
 
 // Optional: allow paddle to be moved by mouse/touch horizontally
 render.canvas.addEventListener("mousemove", function (e) {
+    if (isPaused) return; // If the game is paused, do not move the paddle
     const rect = render.canvas.getBoundingClientRect();
     const mouseX = e.clientX - rect.left;
     Matter.Body.setPosition(paddle, {
@@ -249,7 +258,7 @@ document.body.appendChild(scoreDisplay);
 // Update score display
 setInterval(() => {
     scoreDisplay.textContent = "Score: " + score;
-}, 100); // Update every 100 milliseconds
+}, updatetimer); // Update every 100 milliseconds
 
 // Implement pause functionality
 let isPaused = false;
@@ -265,3 +274,42 @@ document.addEventListener("keydown", (event) => {
         }
     }
 });
+
+// Implement lives system and rendering
+let playerlives = 5;
+const livesDisplay = document.createElement("div");
+livesDisplay.style.position = "absolute";
+livesDisplay.style.top = "10px";
+livesDisplay.style.right = "10px";
+livesDisplay.style.fontFamily = "JetBrains Mono, monospace";
+livesDisplay.style.fontSize = fontsize + "px";
+livesDisplay.style.color = fontcolor;
+livesDisplay.style.textAlign = "right";
+livesDisplay.textContent = "Lives: " + playerlives;
+document.body.appendChild(livesDisplay);
+// Update lives display
+setInterval(() => {
+    livesDisplay.textContent = "Lives: " + playerlives;
+}, updatetimer); // Update every 100 milliseconds
+
+// If lives = 0, return to start menu and set respawn timer to updateTimer / 4
+function goToStartMenu() {
+    // Stop the game loop and rendering
+    isPaused = true;
+    // Optionally, hide the canvas and show a start menu UI
+    render.canvas.style.display = "none";
+    scoreDisplay.textContent = "Game Over - Score: " + score;
+    livesDisplay.textContent = "Lives: 0";
+    // Show alert and reload page on OK
+    alert("Game Over!\nYour score: " + score);
+    window.location.reload();
+    gameoveracknowledged = true; // Set flag to true to indicate game over has been acknowledged
+}
+
+// Watch for lives reaching zero
+setInterval(() => {
+    if (playerlives <= 0 && !gameoveracknowledged) {
+        goToStartMenu();
+        respawnTimer = updatetimer / 4;
+    }
+}, updatetimer);
