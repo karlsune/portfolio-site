@@ -8,7 +8,9 @@ var respawnTimer = 50; // Time in milliseconds to respawn bodies
 // where bodies are spawned at the top of the screen and fall down, bouncing off the ground and walls.
 // The bodies can be clicked and dragged with the mouse.
 
-var deathTimer = 5000; // Time in milliseconds to remove bodies after they fall off the screen
+var deathTimer = 50000; // Time in milliseconds to remove bodies after they fall off the screen
+
+const bodySpawnYOffset = 50; // Y offset from the top of the screen where bodies are spawned
 
 const screenheight = window.innerHeight;
 const screenwidth = window.innerWidth;
@@ -30,8 +32,8 @@ const render = Render.create({
   options: {
     width: screenwidth,
     height: screenheight,
-    wireframes: true,
-    background: "lightblue",
+    wireframes: false,
+    background: getRandomColor()
   },
 });
 
@@ -46,7 +48,6 @@ Composite.add(world, []);
 // Add some dynamic bodies
 Composite.add(world, [
   Bodies.circle(screenwidth / 2, 100, 40, { restitution: 0.8 }), // bouncing ball
-  Bodies.rectangle(screenwidth / 2 + 50, 50, 80, 40, { angle: Math.PI / 4 }), // tilted rectangle
 ]);
 const mouse = Mouse.create(render.canvas);
 const mouseConstraint = MouseConstraint.create(engine, {
@@ -109,9 +110,16 @@ Composite.add(world, ground);
 // Add dynamic body spawner that shoots at ground
 setInterval(() => {
   const x = Math.random() * screenwidth;
-  const y = 0; // Start from the top
+  const y = bodySpawnYOffset; // Start from the top
   const radius = 20 + Math.random() * 30; // Random radius between 20 and 50
-  const body = Bodies.circle(x, y, radius, { restitution: 0.6, friction: 0.1 });
+  
+  const body = Bodies.circle(x, y, radius, { 
+    restitution: 0.6, 
+    friction: 0.1,
+    render: {
+      fillStyle: getRandomColor(), // Random color for each body
+    },
+  });
   Composite.add(world, body);
 }, respawnTimer); // Spawn a new body every second
 
@@ -126,3 +134,31 @@ setInterval(() => {
         }
     });
 }, deathTimer); // Check every 5 seconds
+
+
+
+
+// Remove non-static bodies when they collide with the ground
+Matter.Events.on(engine, "collisionStart", (event) => {
+    const pairs = event.pairs;
+    pairs.forEach((pair) => {
+        // Compare by id to ensure correct ground detection
+        if ((pair.bodyA.id === ground.id && !pair.bodyB.isStatic)) {
+            console.log(`Collision detected between ground and body ${pair.bodyB.id}`);
+            Composite.remove(world, pair.bodyB);
+        } else if ((pair.bodyB.id === ground.id && !pair.bodyA.isStatic)) {
+            console.log(`Collision detected between ground and body ${pair.bodyA.id}`);
+            Composite.remove(world, pair.bodyA);
+        }
+    });
+});
+
+// Function getRandomColor()
+function getRandomColor() {
+  const letters = "0123456789ABCDEF";
+  let color = "#";
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
