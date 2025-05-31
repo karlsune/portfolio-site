@@ -47,7 +47,7 @@ const mouseConstraint = MouseConstraint.create(engine, {
     constraint: {
         stiffness: 0.2,
         render: {
-            visible : true
+            visible : false
         }
     }
 });
