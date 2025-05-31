@@ -108,6 +108,8 @@ Composite.add(world, ground);
 
 // Add dynamic body spawner that shoots at ground
 setInterval(() => {
+
+    if (isPaused) return; // If the game is paused, do not spawn new bodies
   const x = Math.random() * screenwidth;
   const y = bodySpawnYOffset * (5 * Math.random()); // Start from the top in range to avoid overlap
   const radius = 20 + Math.random() * 30; // Random radius between 20 and 50
@@ -211,3 +213,55 @@ render.canvas.addEventListener("mousemove", function (e) {
 });
 
 engine.world.gravity.y = 1; // Enable downward gravity so balls fall
+
+let score = 0;
+
+// Listen for collisions between balls and paddle
+Matter.Events.on(engine, "collisionStart", (event) => {
+    event.pairs.forEach((pair) => {
+        // Check if paddle is involved in the collision
+        if ((pair.bodyA.id === paddle.id && !pair.bodyB.isStatic)) {
+            Composite.remove(world, pair.bodyB);
+            score++;
+            console.log("Score:", score);
+        } else if ((pair.bodyB.id === paddle.id && !pair.bodyA.isStatic)) {
+            Composite.remove(world, pair.bodyA);
+            score++;
+            console.log("Score:", score);
+        }
+    });
+});
+
+// Display score on web page top centered font jetbrains mono bold
+const scoreDisplay = document.createElement("div");
+const fontsize = 24;
+const fontcolor = getRandomColor();
+scoreDisplay.style.position = "absolute";
+scoreDisplay.style.top = "10px";
+scoreDisplay.style.left = "50%";
+scoreDisplay.style.transform = "translateX(-50%)";
+scoreDisplay.style.fontFamily = "JetBrains Mono, monospace";
+scoreDisplay.style.fontSize = fontsize + "px";
+scoreDisplay.style.color = fontcolor;
+scoreDisplay.style.textAlign = "center";
+scoreDisplay.textContent = "Score: " + score;
+document.body.appendChild(scoreDisplay);
+// Update score display
+setInterval(() => {
+    scoreDisplay.textContent = "Score: " + score;
+}, 100); // Update every 100 milliseconds
+
+// Implement pause functionality
+let isPaused = false;
+document.addEventListener("keydown", (event) => {
+    if (event.key === "p" || event.key === "P") {
+        isPaused = !isPaused;
+        if (isPaused) {
+            Runner.stop(runner);
+            scoreDisplay.textContent = "Paused - Score: " + score;
+        } else {
+            Runner.start(runner, engine);
+            scoreDisplay.textContent = "Score: " + score;
+        }
+    }
+});
