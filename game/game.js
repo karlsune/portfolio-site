@@ -1,7 +1,7 @@
 // This is free and open source software licensed under the GNU General Public License v3.0.
 // You can redistribute it and/or modify it under the terms of the GPL-3.0 License.
 // Copyright (C) Karl Sundström
- 
+
 const screenheight = window.innerHeight;
 const screenwidth = window.innerWidth;
 
@@ -62,6 +62,7 @@ mouse.element.addEventListener('mousedown', function() {
         mouseConstraint.mouse.element.style.cursor = 'pointer'; // Change cursor on hover
 })
 
+
 engine.world.gravity.y = 0; // Disable gravity for a more controlled environment
 engine.world.gravity.x = 0; // Disable horizontal gravity
 
@@ -74,4 +75,7 @@ const walls = [
     Bodies.rectangle(screenwidth + thickness / 2, screenheight / 2, thickness, screenheight, { isStatic: true }) // right
 ];
 Composite.add(world, walls);
-// Prevent bodies from going out of bounds
+
+// Add a ground
+const ground = Bodies.rectangle(screenwidth / 2, screenheight - 25, screenwidth, 50, { isStatic: true });
+Composite.add(world, ground);
