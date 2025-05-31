@@ -15,14 +15,14 @@ This is a minimalistic and responsive portfolio site template designed for devel
 ## Getting Started
 
 1. **Download the HTML file:**  
-    Clone the repository or download the HTML file from [GitHub](hhttps://github.com/karlsune/portfolio-site).
-2. **Customize your content:**  
-    - Edit the main content sections to add your projects, about info, and contact details.
-    - Modify styles in the `<style>` section to match your personal branding.
-    - Update subtitles and interactive elements in the `<script>` section.
-3. **Deploy your site:**  
-    - Host the file using GitHub Pages, Cloudflare Pages, Netlify, or any static hosting provider.
-    - No backend or server configuration required.
+   Clone the repository or download the HTML file from [GitHub](hhttps://github.com/karlsune/portfolio-site).
+2. **Customize your content:**
+   - Edit the main content sections to add your projects, about info, and contact details.
+   - Modify styles in the `<style>` section to match your personal branding.
+   - Update subtitles and interactive elements in the `<script>` section.
+3. **Deploy your site:**
+   - Host the file using GitHub Pages, Cloudflare Pages, Netlify, or any static hosting provider.
+   - No backend or server configuration required.
 
 ## Contributing
 
