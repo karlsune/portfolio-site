@@ -2,14 +2,13 @@
 // You can redistribute it and/or modify it under the terms of the GPL-3.0 License.
 // Copyright (C) Karl Sundström
 
-var respawnTimer = 50; // Time in milliseconds to respawn bodies
+var respawnTimer = 100; // Time in milliseconds to respawn bodies
 // You can change this value to control how often new bodies are spawned
 // This code uses the Matter.js physics engine to create a simple game environment
 // where bodies are spawned at the top of the screen and fall down, bouncing off the ground and walls.
 // The bodies can be clicked and dragged with the mouse.
 
-var deathTimer = 50000; // Time in milliseconds to remove bodies after they fall off the screen
-
+var deathTimer = 50000; // Time in milliseconds to remove all 'body' objects
 const bodySpawnYOffset = 50; // Y offset from the top of the screen where bodies are spawned
 
 const screenheight = window.innerHeight;
