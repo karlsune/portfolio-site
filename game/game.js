@@ -2,7 +2,7 @@
 // You can redistribute it and/or modify it under the terms of the GPL-3.0 License.
 // Copyright (C) Karl Sundström
 
-var respawnTimer = 100; // Time in milliseconds to respawn bodies
+var respawnTimer = 1000; // Time in milliseconds to respawn bodies
 // You can change this value to control how often new bodies are spawned
 // This code uses the Matter.js physics engine to create a simple game environment
 // where bodies are spawned at the top of the screen and fall down, bouncing off the ground and walls.
@@ -161,3 +161,53 @@ function getRandomColor() {
   }
   return color;
 }
+
+// Add touch responsive paddle at bottom of screen
+const paddlewidth = screenwidth / 5;
+const paddleheight = screenheight / 20;
+
+const paddle = Bodies.rectangle(
+    screenwidth / 2,
+    screenheight - thickness - paddleheight / 2 - 10, // Place paddle just above the ground
+    paddlewidth,
+    paddleheight,
+    {
+        isStatic: true, // Make paddle static so it doesn't fall
+        render: {
+            fillStyle: "blue",
+        },
+    }
+);
+Composite.add(world, paddle);
+
+paddle.friction = 0;
+paddle.frictionAir = 0.2;
+paddle.frictionStatic = 0;
+
+// Constrain paddle to only move horizontally (like on rails)
+Matter.Events.on(engine, "beforeUpdate", function () {
+    // Lock paddle's y position and angle
+    Matter.Body.setPosition(paddle, {
+        x: paddle.position.x,
+        y: screenheight - thickness - paddleheight / 2 - 10
+    });
+    Matter.Body.setAngle(paddle, 0);
+    // Zero out vertical velocity and angular velocity
+    paddle.velocity.y = 0;
+    paddle.angularVelocity = 0;
+});
+
+// Optional: allow paddle to be moved by mouse/touch horizontally
+render.canvas.addEventListener("mousemove", function (e) {
+    const rect = render.canvas.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    Matter.Body.setPosition(paddle, {
+        x: Math.max(
+            paddlewidth / 2,
+            Math.min(mouseX, screenwidth - paddlewidth / 2)
+        ),
+        y: paddle.position.y
+    });
+});
+
+engine.world.gravity.y = 1; // Enable downward gravity so balls fall
