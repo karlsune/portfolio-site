@@ -75,7 +75,7 @@ mouse.element.addEventListener("mousedown", function () {
   else mouseConstraint.mouse.element.style.cursor = "pointer"; // Change cursor on hover
 });
 
-engine.world.gravity.y = 0; // Disable gravity for a more controlled environment
+engine.world.gravity.y = 0; // Disable vertical gravity
 engine.world.gravity.x = 0; // Disable horizontal gravity
 
 // No boundary walls are added here.
@@ -152,12 +152,18 @@ Matter.Events.on(engine, "collisionStart", (event) => {
         if ((pair.bodyA.id === ground.id && !pair.bodyB.isStatic)) {
             console.log(`Collision detected between ground and body ${pair.bodyB.id}`);
             Composite.remove(world, pair.bodyB);
-                        playerlives--; // Decrease player lives when a body collides with the ground
+
+            playerlives--; // Decrease player lives when a body collides with the ground
+            window.hurtSound.currentTime = 0;
+            window.hurtSound.play();            
 
         } else if ((pair.bodyB.id === ground.id && !pair.bodyA.isStatic)) {
             console.log(`Collision detected between ground and body ${pair.bodyA.id}`);
             Composite.remove(world, pair.bodyA);
+
             playerlives--; // Decrease player lives when a body collides with the ground
+            window.hurtSound.currentTime = 0;
+            window.hurtSound.play();
         }
     });
 });
@@ -232,10 +238,18 @@ Matter.Events.on(engine, "collisionStart", (event) => {
         if ((pair.bodyA.id === paddle.id && !pair.bodyB.isStatic)) {
             Composite.remove(world, pair.bodyB);
             score++;
+            if (window.pickupSound) {
+                window.pickupSound.currentTime = 0;
+                window.pickupSound.play();
+            }
             console.log("Score:", score);
         } else if ((pair.bodyB.id === paddle.id && !pair.bodyA.isStatic)) {
             Composite.remove(world, pair.bodyA);
             score++;
+            if (window.pickupSound) {
+                window.pickupSound.currentTime = 0;
+                window.pickupSound.play();
+            }
             console.log("Score:", score);
         }
     });
@@ -309,8 +323,24 @@ function goToStartMenu() {
 // Watch for lives reaching zero
 setInterval(() => {
     if (playerlives <= 0 && !gameoveracknowledged) {
+        window.gameOverSound.currentTime = 0;
+        window.gameOverSound.play();
         goToStartMenu();
         respawnTimer = updatetimer / 4;
     }
 }, updatetimer);
+
+// Add audio for sound effects
+// Initialize all sound effects at startup
+
+defineSoundEffects();
+
+function defineSoundEffects() {
+    window.pickupSound = new Audio("./audio/pickup.wav");
+    window.pickupSound.volume = 0.5; // Adjust volume as needed
+    window.hurtSound = new Audio("./audio/hurt.wav");
+    window.hurtSound.volume = 0.5; // Adjust volume as needed
+    window.gameOverSound = new Audio("./audio/gameover.wav");
+    window.gameOverSound.volume = 0.5; // Adjust volume as needed
+}
 
