@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Animated Polka Bar - Barber Style</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            background: #181a1b;
+            font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+        .bar-container {
+            position: relative;
+            width: 100vw;
+            height: 48px;
+            overflow: hidden;
+            background: linear-gradient(90deg, #232526 0%, #414345 100%);
+            box-shadow: 0 4px 24px #000a;
+            border-bottom: 4px solid #00ffe7;
+        }
+        .polka-dots {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .dot {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.18;
+            animation: breezeDots 16s linear infinite;
+            background: #00ffe7;
+            animation-fill-mode: forwards;
+        }
+        @keyframes breezeDots {
+            0% { opacity: 0.18; transform: translateX(0); }
+            62.5% { opacity: 0.18; } /* 10s of 16s = 62.5% */
+            80% { opacity: 0.09; }
+            100% { opacity: 0; transform: translateX(-120vw); }
+        }
+        .ad-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            height: 100%;
+            justify-content: center;
+            gap: 40px;
+            text-shadow: 0 2px 8px #00ffe7cc, 0 0 2px #000;
+        }
+        .ad-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            color: #00ffe7;
+            text-transform: uppercase;
+            animation: flicker 2s infinite alternate;
+        }
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            45% { opacity: 0.85; }
+            50% { opacity: 0.6; }
+            55% { opacity: 0.85; }
+        }
+        .ad-desc {
+            font-size: 1.2rem;
+            color: #e0e0e0;
+            max-width: 400px;
+            letter-spacing: 0.05em;
+        }
+        .cta-btn {
+            background: #00ffe7;
+            color: #181a1b;
+            border: none;
+            padding: 16px 32px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 32px;
+            box-shadow: 0 2px 16px #00ffe799;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            text-transform: uppercase;
+            margin-left: 24px;
+        }
+        .cta-btn:hover {
+            background: #181a1b;
+            color: #00ffe7;
+            border: 2px solid #00ffe7;
+        }
+        @media (max-width: 700px) {
+            .ad-content {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
+            .ad-title { font-size: 1.5rem; }
+            .ad-desc { font-size: 1rem; }
+            .cta-btn { margin-left: 0; }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Orbitron:700,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bar-container">
+        <div class="polka-dots" id="polkaDots"></div>
+        <div class="ad-content">
+            <span class="ad-title">Karlsune</span>
+            <span class="ad-desc">Upgrade your look with precision tech streams from Karlsune. Where style meets the future. Book your streamer university transformation today.</span>
+            <button class="cta-btn">Book Now</button>
+        </div>
+    </div>
+    <script>
+        // Generate animated polka dots
+        const polkaDots = document.getElementById('polkaDots');
+        const dotColors = ['#00ffe7', '#fff', '#00bfae'];
+        const barWidth = polkaDots.offsetWidth || window.innerWidth;
+        for (let i = 0; i < 24; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'dot';
+            const size = 10 + Math.random() * 18;
+            dot.style.width = dot.style.height = size + 'px';
+            // Start dots off-screen to the right, randomize vertical position
+            dot.style.left = (100 + Math.random() * 20) + 'vw';
+            dot.style.top = (10 + Math.random() * 70) + '%';
+            dot.style.background = dotColors[Math.floor(Math.random() * dotColors.length)];
+            dot.style.opacity = 0.14 + Math.random() * 0.16;
+            // Each dot gets a random duration and delay for a breezy effect
+            const duration = 14 + Math.random() * 8;
+            dot.style.animationDuration = duration + 's';
+            dot.style.animationDelay = (-Math.random() * duration) + 's';
+            polkaDots.appendChild(dot);
+        }
+    </script>
+</body>
+</html>
