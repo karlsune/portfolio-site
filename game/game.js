@@ -301,6 +301,7 @@ livesDisplay.style.color = fontcolor;
 livesDisplay.style.textAlign = "right";
 livesDisplay.textContent = "Lives: " + playerlives;
 document.body.appendChild(livesDisplay);
+
 // Update lives display
 setInterval(() => {
     livesDisplay.textContent = "Lives: " + playerlives;
@@ -330,10 +331,8 @@ setInterval(() => {
     }
 }, updatetimer);
 
-// Add audio for sound effects
-// Initialize all sound effects at startup
 
-defineSoundEffects();
+defineSoundEffects(); // Initialize all sound effects at startup
 
 function defineSoundEffects() {
     window.pickupSound = new Audio("./audio/pickup.wav");
