@@ -1,32 +1,44 @@
-# Portfolio Site
+# Portfolio Site & Web Demos
 
 Welcome!
 
-This is a minimalistic and responsive portfolio site template designed for developers, designers, and anyone who wants to showcase their work online. The site is built with pure HTML, CSS, and JavaScript—no frameworks or build tools required. It is lightweight, fast, and works seamlessly across all modern devices and browsers.
+This repository contains a collection of minimalistic, responsive web projects and demos, including a portfolio site template, business/construction landing pages, interactive games, and various HTML/CSS/JS experiments. All projects are built with pure HTML, CSS, and JavaScript—no frameworks or build tools required. The codebase is lightweight, fast, and works seamlessly across all modern devices and browsers.
+
+## Project Structure
+
+- **portfolio-site/index.html**: Main portfolio homepage. Edit this file to showcase your work, about info, and contact details.
+- **business/index.html**: Business landing page template.
+- **construction/index.html**: Construction landing page template.
+- **game/game.html & game.js**: Simple browser game with sound effects (see `game/audio/`).
+- **css/styles.css**: Shared stylesheet for consistent design across pages.
+- **script/**: JavaScript utilities and demo scripts (e.g., `array.js`, `main.js`, `subtitleRender.js`).
+- **icon/**: Site icons and images.
+- **docs/**: Documentation, license, and this README.
+- **Other HTML demos**: Standalone creative/experimental pages (e.g., `animated-polka-bar-barber-style.html`, `bible-quote-generator.html`, `clock-web-app.htm`, `hl2-hud-overlay.html`).
 
 ## Features
 
-- **Single-repo deployment:** The entire site is contained in a single repository for easy setup and hosting.
-- **Responsive design.**
-- **JS demo right under header1.**
-- **Customizable sections:** Edit the main content, styles, and subtitles directly in the HTML file.
-- **Open source:** Source code is available on GitHub for anyone to use, modify, or contribute to.
+- **Single-repo deployment:** All demos and templates in one repository for easy setup and hosting.
+- **Responsive design:** Mobile-friendly layouts throughout.
+- **Multiple web demos:** Includes games, generators, and creative UI experiments.
+- **Customizable sections:** Edit HTML, CSS, and JS directly to fit your needs.
+- **No dependencies:** No frameworks or build tools required.
+- **Open source:** Source code is available for anyone to use, modify, or contribute to.
 
 ## Getting Started
 
-1. **Download the HTML file:**  
-   Clone the repository or download the HTML file from [GitHub](hhttps://github.com/karlsune/portfolio-site).
-2. **Customize your content:**
-   - Edit the main content sections to add your projects, about info, and contact details.
-   - Modify styles in the `<style>` section to match your personal branding.
-   - Update subtitles and interactive elements in the `<script>` section.
+1. **Clone or download the repository:**
+   - `git clone https://github.com/karlsune/portfolio-site`
+2. **Explore the folders:**
+   - Open any HTML file in your browser to view a demo or template.
+   - Edit the HTML, CSS, or JS files to customize content and styles.
 3. **Deploy your site:**
-   - Host the file using GitHub Pages, Cloudflare Pages, Netlify, or any static hosting provider.
+   - Host the repository or any HTML file using GitHub Pages, Cloudflare Pages, Netlify, or any static hosting provider.
    - No backend or server configuration required.
 
 ## Contributing
 
-Contributions are welcome.
+Contributions are welcome! Feel free to submit issues or pull requests for new demos, bug fixes, or improvements.
 
 ## Known Issues
 
@@ -34,7 +46,7 @@ Contributions are welcome.
 
 ## License
 
-This project is licensed under the GNU GPLv3 license. See [LICENSE](LICENSE) for more details.
+This project is licensed under the GNU GPLv3 license. See [LICENSE.md](docs/LICENSE.md) for more details.
 
 ## Disclaimer
 
