@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RPG HUD Overlay</title>
+    <style>
+        body {
+            background: #181818;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .hud-container {
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+            width: 260px;
+            background: rgba(30, 30, 30, 0.5);
+            border-radius: 0;
+            box-shadow: 0 2px 12px #0008;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        .bar-bg {
+            width: 100%;
+            height: 18px;
+            background: #232323;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: 0 1px 4px #0006 inset;
+            position: relative;
+            padding: 0;
+        }
+        .bar-fill {
+            height: 100%;
+            border-radius: 0;
+            transition: width 0.3s;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .health { background: linear-gradient(90deg, #e53935, #b71c1c); }
+        .mana   { background: linear-gradient(90deg, #2196f3, #1565c0); }
+        .stamina{ background: linear-gradient(90deg, #43a047, #1b5e20); }
+        .bar-content {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .bar-label {
+            font-size: 12px;
+            color: #eee;
+            letter-spacing: 1px;
+            text-shadow: 0 1px 2px #000a;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            left: 8px;
+        }
+        .bar-value {
+            font-size: 12px;
+            color: #fff;
+            text-shadow: 0 1px 2px #000a;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!--
+        RPG HUD Overlay
+        ----------------
+        This file implements a Half-Life 2 style RPG HUD overlay for web projects.
+        - The HUD displays three bars: Health, Mana, and Stamina.
+        - Bar values and fills are dynamically controlled via JavaScript.
+        - The HUD is styled to have no border radius, no padding, and no gaps between bars.
+        - Bar labels and values are displayed inside each bar.
+        - The document background is fully transparent; the bars remain fully opaque.
+        
+        Usage:
+        - To update the bar values, modify the variables in the <script> section and call updateBars().
+        - The CSS is self-contained and can be customized for other color schemes or bar types.
+        
+        Author: [Your Name or GitHub]
+        Date: 2025-07-01
+    -->
+    <div class="hud-container">
+        <div>
+            <div class="bar-bg">
+                <div class="bar-fill health" id="health-bar"></div>
+                <div class="bar-content">
+                    <span class="bar-label">HEALTH</span>
+                    <span class="bar-value" id="health-value">60/100</span>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="bar-bg">
+                <div class="bar-fill mana" id="mana-bar"></div>
+                <div class="bar-content">
+                    <span class="bar-label">MANA</span>
+                    <span class="bar-value" id="mana-value">60/100</span>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="bar-bg">
+                <div class="bar-fill stamina" id="stamina-bar"></div>
+                <div class="bar-content">
+                    <span class="bar-label">STAMINA</span>
+                    <span class="bar-value" id="stamina-value">90/100</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Example values, you can update these dynamically
+        let health = 11, maxHealth = 100;
+        let mana = 60, maxMana = 100;
+        let stamina = 90, maxStamina = 100;
+
+        function updateBars() {
+            document.getElementById('health-bar').style.width = (health / maxHealth * 100) + '%';
+            document.getElementById('mana-bar').style.width = (mana / maxMana * 100) + '%';
+            document.getElementById('stamina-bar').style.width = (stamina / maxStamina * 100) + '%';
+            document.getElementById('health-value').textContent = `${health}/${maxHealth}`;
+            document.getElementById('mana-value').textContent = `${mana}/${maxMana}`;
+            document.getElementById('stamina-value').textContent = `${stamina}/${maxStamina}`;
+        }
+
+        // Initial update
+        updateBars();
+
+        // Example: change values every 2 seconds for demonstration
+        /*
+        setInterval(() => {
+            health = Math.max(0, Math.min(maxHealth, health + (Math.random() - 0.5) * 10));
+            mana = Math.max(0, Math.min(maxMana, mana + (Math.random() - 0.5) * 10));
+            stamina = Math.max(0, Math.min(maxStamina, stamina + (Math.random() - 0.5) * 10));
+            updateBars();
+        }, 2000);
+        */
+    </script>
+</body>
+</html>
