@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Twitch Clock Overlay</title>
+    <!-- Google Fonts: Roboto Mono for a clean clock look -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: transparent;
+        }
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: transparent;
+        }
+        .clock-container {
+            background: rgba(30, 30, 30, 0.8); /* semi-transparent for maskability */
+            border-radius: 2em;
+            box-shadow: 0 4px 32px rgba(0,0,0,0.3);
+            padding: 1.5em 3em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 320px;
+            min-height: 100px;
+            user-select: none;
+            /* Maskable: transparent background, only clock visible */
+        }
+        .clock {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 3em;
+            color: #fff;
+            letter-spacing: 0.1em;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="clock-container">
+        <span class="clock" id="clock">--:--:--</span>
+    </div>
+    <script>
+        function pad(n) { return n < 10 ? '0' + n : n; }
+        function updateClock() {
+            const now = new Date();
+            const h = pad(now.getHours());
+            const m = pad(now.getMinutes());
+            const s = pad(now.getSeconds());
+            document.getElementById('clock').textContent = `${h}:${m}:${s}`;
+        }
+        updateClock();
+        setInterval(updateClock, 1000);
+    </script>
+</body>
+</html>
+
+<!-- No additional code needed here. -->
