@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Old Testament Bible Quote Generator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: transparent;
+        }
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: transparent;
+        }
+        .quote-container {
+            background: rgba(30, 30, 30, 0.8);
+            color: #fff;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 2;
+            width: 500px;
+            height: 180px;
+            max-width: 500px;
+            max-height: 180px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-radius: 0;
+            border: none;
+            padding: 0;
+            box-shadow: 0 4px 32px rgba(0,0,0,0.3);
+            user-select: none;
+        }
+        #quote {
+            display: block;
+            width: 100%;
+            height: 90px;
+            line-height: 1.2;
+            font-size: 2em;
+            white-space: pre-wrap;
+            word-break: break-word;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin: 0 auto;
+            transition: font-size 0.2s;
+        }
+        .verse-ref {
+            margin-top: 0.5em;
+            font-size: 0.9em;
+            color: #ccc;
+        }
+        button {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="quote-container">
+        <span id="quote">"In the beginning God created the heaven and the earth."</span>
+        <span class="verse-ref" id="ref">Genesis 1:1</span>
+    </div>
+    <script>
+        const quotes = [
+            { text: "Kindness is a strength that brings peace to many.", ref: "Proverb" },
+            { text: "Patience in adversity leads to wisdom.", ref: "Proverb" },
+            { text: "A gentle answer turns away anger.", ref: "Proverb" },
+            { text: "Those who seek understanding find harmony.", ref: "Proverb" },
+            { text: "Let justice and fairness guide your actions.", ref: "Proverb" },
+            { text: "Compassion for others brings light to the world.", ref: "Proverb" },
+            { text: "Courage is found in quiet perseverance.", ref: "Proverb" },
+            { text: "Wisdom is more precious than riches.", ref: "Proverb" },
+            { text: "A peaceful heart leads to a peaceful life.", ref: "Proverb" },
+            { text: "Hope endures even in the darkest times.", ref: "Proverb" }
+        ];
+
+        function fitText() {
+            const quoteEl = document.getElementById('quote');
+            let fontSize = 32;
+            quoteEl.style.fontSize = fontSize + 'px';
+            while ((quoteEl.scrollHeight > quoteEl.offsetHeight || quoteEl.scrollWidth > quoteEl.offsetWidth) && fontSize > 12) {
+                fontSize -= 1;
+                quoteEl.style.fontSize = fontSize + 'px';
+            }
+        }
+
+        function newQuote() {
+            const idx = Math.floor(Math.random() * quotes.length);
+            document.getElementById('quote').textContent = '"' + quotes[idx].text + '"';
+            document.getElementById('ref').textContent = quotes[idx].ref;
+            fitText();
+        }
+
+        window.onload = newQuote;
+    </script>
+</body>
+</html>
