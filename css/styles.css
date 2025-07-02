@@ -2,10 +2,6 @@
 
 CSS VARIABLES & BASE STYLES
 
-DISCLAIMER:
-
-ALL STYLE IS INITIALLY AIGC.
-
 */
 
 /*Ensures padding and border are included */
@@ -13,6 +9,12 @@ ALL STYLE IS INITIALLY AIGC.
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+/* Reference the .example-img class */
+.example-img {
+  width: 100%;
+  border-radius: 32px;
 }
 
 /*init theme variables*/
