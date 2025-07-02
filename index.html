@@ -88,8 +88,8 @@
       <!--
         PROJECTS SECTION:
         This section showcases links to various projects, including subpages and external resources.
-        MEGA DISCLAIMER: I AM A VIBE CODER BIG PICTURE ENGINEER -->
-      <section id="projects">
+        MEGA DISCLAIMER: I AM A BIG PICTURE ENGINEER -->
+      <section id="web dev projects">
         <h2>#projects</h2>
         <p><a href="https://www.twitch.tv/karlsune">my twitch channel</a></p>
         <p><a href="https://github.com/karlsune/portfolio-site">this portfolio site</a></p>
@@ -98,7 +98,18 @@
         <p><a href="game/game.html">this game web app utilizing matter.js</a></p>
         <p><a href="null">Do not click me</a></p>
         <p><a href="https://github.com/karlsune">all my github repositories</a></p>
-        
+        <p><a href="animated-dopamine-bg.html">Animated Dopamine Background</a></p>
+        <p><a href="bible-quote-generator.html">Bible Quote Generator</a></p>
+        <p><a href="hl2-hud-overlay.html">HL2 HUD Overlay</a></p>
+        <p><a href="second-cam-graphic.html">Second Cam Graphic</a></p>
+        <p><a href="webcam-overlay-16x9.html">Webcam Overlay 16x9</a></p>
+        <p><a href="business/index.html">Business Subpage</a></p>
+        <p><a href="construction/index.html">Under Construction Subpage</a></p>
+        <p><a href="animated-polka-bar.html">Animated banner ad placement bar</a></p>
+        <p><a href="animated-polka-bar-footer.html">Animated footer ad placement bar</a></p>
+        <p><a href="animated-polka-bar-barber-style.html">Animated barber style ad placement bar</a></p>
+        <p><a href="animated-polka-bar-barber-footer.html">Animated footer ad placement bar</a></p>
+        <p><a href="clock-web-app.htm">JS clock applet</a></p>
       </section>
 
       <section id="about">
@@ -135,6 +146,7 @@
           <li>web design</li>
         </ul>
       </section>
+
     </main>
 
     <!--
@@ -158,6 +170,18 @@
     <script src="./script/subtitleRender.js"></script>
     <script src="./script/array.js"></script>
     <script defer src="./script/main.js"></script>
+
+    <script>
+        // Curtain/collapsible menu logic for New Developments
+        const toggleBtn = document.getElementById('toggle-developments');
+        const devList = document.getElementById('developments-list');
+        toggleBtn.addEventListener('click', function() {
+          const expanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+          toggleBtn.setAttribute('aria-expanded', !expanded);
+          devList.style.display = expanded ? 'none' : 'block';
+          toggleBtn.textContent = (expanded ? '▼' : '▲') + ' New Developments';
+        });
+      </script>
 
     <noscript>
       <div id="noScriptWarn">
