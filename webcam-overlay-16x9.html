@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Webcam Overlay 16:9 - Pink Pulse</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            background: transparent;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .webcam-overlay {
+            position: relative;
+            width: 1280px;
+            height: 720px;
+            box-sizing: border-box;
+            border: 8px solid #ff79c6;
+            border-radius: 32px;
+            box-shadow: 0 0 32px #ff79c6aa, 0 0 8px #bd93f9aa;
+            transition: box-shadow 0.4s cubic-bezier(.4,0,.2,1), border-width 0.4s cubic-bezier(.4,0,.2,1);
+            background: rgba(24,26,27,0.01);
+            margin-left: 32px; /* Added to prevent left glow cutoff */
+        }
+        .webcam-overlay.pulse {
+            border-width: 16px;
+            box-shadow: 0 0 64px #ff79c6cc, 0 0 24px #bd93f9cc;
+        }
+        @media (max-width: 1300px) {
+            .webcam-overlay {
+                width: 90vw;
+                height: calc(90vw * 9 / 16);
+            }
+        }
+        @media (max-width: 800px) {
+            .webcam-overlay {
+                width: 98vw;
+                height: calc(98vw * 9 / 16);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="webcam-overlay" id="overlay"></div>
+    <script>
+        function triggerPulse() {
+            const overlay = document.getElementById('overlay');
+            overlay.classList.add('pulse');
+            setTimeout(() => overlay.classList.remove('pulse'), 600);
+        }
+        function schedulePulse() {
+            const next = 5000 + Math.random() * 25000;
+            setTimeout(() => {
+                triggerPulse();
+                schedulePulse();
+            }, next);
+        }
+        schedulePulse();
+    </script>
+</body>
+</html>

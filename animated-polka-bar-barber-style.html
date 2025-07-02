@@ -19,8 +19,7 @@
             overflow: hidden;
             background: linear-gradient(90deg, #282a36 0%, #44475a 100%);
             border-radius: 0 0 18px 18px;
-            border-bottom-width: 0px;
-            border-top: 1px solid #ff79c6;
+            border-bottom: 2px solid #ff79c6;
             box-shadow: 0 2px 24px #ff79c6aa, 0 1px 8px #000a;
         }
         .polka-dots {
@@ -130,14 +129,14 @@
         <div class="polka-dots" id="polkaDots"></div>
         <div class="ad-content">
             <span class="ad-title">Karlsune</span>
-            <span class="ad-desc">Upgrade your look with precision tech streams from Karlsune. Where style meets the future.<br> Book your transformation today.</span>
-            <button class="cta-btn">Book Now</button>
+            <span class="ad-desc">Upgrade your look with precision tech streams from Karlsune. Where style meets the future.</span>
+            <button class="cta-btn">Join the chat today</button>
         </div>
     </div>
     <script>
         // Generate animated polka dots
         const polkaDots = document.getElementById('polkaDots');
-        const dotColors = ['#00ffe7', '#fff', '#00bfae'];
+        const dotColors = ['#ff79c6', '#f8f8f2', '#bd93f9'];;
         const barWidth = polkaDots.offsetWidth || window.innerWidth;
         for (let i = 0; i < 24; i++) {
             const dot = document.createElement('div');
