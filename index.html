@@ -13,7 +13,7 @@
 ===============================================================================
 -->
 
-<!doctype html>
+<!DOCTYPE html>
 
 <html lang="en">
   <head>
@@ -59,25 +59,19 @@
         MAIN: Contains the site title, animated subtitle, and all main sections.
     -->
     <main>
-      
       <div class="site-title">karlsune's vibe coded portfolio site.</div>
       <div class="site-subtitle" id="site-subtitle" aria-live="polite">
         web developer
       </div>
 
-
-            <!--
+      <!--
         GitHub Profile Stats Embed:
         This section displays a dynamic card with my GitHub stats.
         (https://github.com/anuraghazra/github-readme-stats)
         -->
 
       <section id="stats">
-        <a
-          href="https://github.com/karlsune"
-          target="_blank"
-          rel="noopener"
-        >
+        <a href="https://github.com/karlsune" target="_blank" rel="noopener">
           <img
             src="https://github-readme-stats.vercel.app/api?username=karlsune&show_icons=true&theme=default"
             alt="GitHub stats for karlsune"
@@ -86,29 +80,91 @@
         </a>
       </section>
 
-      <!--
-        PROJECTS SECTION:
-        This section showcases links to various projects, including subpages and external resources.
-        MEGA DISCLAIMER: I AM A BIG PICTURE ENGINEER -->
-      <section id="web dev projects">
+      <section id="web-dev-projects">
         <h2>#projects</h2>
-        <p><a href="https://www.twitch.tv/karlsune">my twitch channel</a></p>
-        <p><a href="https://github.com/karlsune/portfolio-site">this portfolio site</a></p>
-        <p><a href="clock-web-app.htm">this clock web app</a></p>
-        <p><a href="karlsune.org">hosting this page</a></p>
-        <p><a href="game/game.html">this game web app utilizing matter.js</a></p>
-        <p><a href="null">Do not click me</a></p>
-        <p><a href="https://github.com/karlsune">all my github repositories</a></p>
-        <p><a href="animated-dopamine-bg.html">Animated Dopamine Background</a></p>
-        <p><a href="bible-quote-generator.html">Bible Quote Generator</a></p>
-        <p><a href="hl2-hud-overlay.html">HL2 HUD Overlay</a></p>
-        <p><a href="second-cam-graphic.html">Second Cam Graphic</a></p>
-        <p><a href="webcam-overlay-16x9.html">Webcam Overlay 16x9</a></p>
-        <p><a href="business/index.html">Business Subpage</a></p>
-        <p><a href="construction/index.html">Under Construction Subpage</a></p>
-        <p><a href="animated-polka-bar.html">Animated banner ad placement bar</a></p>
-        <p><a href="animated-polka-bar-footer.html">Animated footer ad placement bar for twitch.tv</a></p>
-        <p><a href="clock-web-app.htm">JS clock applet</a></p>
+        <ul>
+          <li>
+            <a href="https://github.com/karlsune/portfolio-site"
+              >portfolio-site (repo)</a
+            >
+            <ul>
+              <li><a href="index.html">index.html</a></li>
+              <li><a href="LICENSE.md">LICENSE.md</a></li>
+              <li><a href="README.md">README.md</a></li>
+              <li>
+                <a href="css/">css/</a>
+                <ul>
+                  <li><a href="css/styles.css">styles.css</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="icon/">icon/</a>
+                <ul>
+                  <li><a href="icon/icon.gif">icon.gif</a></li>
+                  <li><a href="icon/example.png">example.png</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="script/">script/</a>
+                <ul>
+                  <li>
+                    <a href="script/subtitleRender.js">subtitleRender.js</a>
+                  </li>
+                  <li><a href="script/array.js">array.js</a></li>
+                  <li><a href="script/main.js">main.js</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="game/">game/</a>
+                <ul>
+                  <li><a href="game/game.html">game.html</a></li>
+                  <!-- Add more game files if present -->
+                </ul>
+              </li>
+              <li>
+                <a href="business/">business/</a>
+                <ul>
+                  <li><a href="business/index.html">index.html</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="construction/">construction/</a>
+                <ul>
+                  <li><a href="construction/index.html">index.html</a></li>
+                </ul>
+              </li>
+              <li><a href="clock-web-app.htm">clock-web-app.htm</a></li>
+              <li>
+                <a href="animated-dopamine-bg.html"
+                  >animated-dopamine-bg.html</a
+                >
+              </li>
+              <li>
+                <a href="bible-quote-generator.html"
+                  >bible-quote-generator.html</a
+                >
+              </li>
+              <li><a href="hl2-hud-overlay.html">hl2-hud-overlay.html</a></li>
+              <li>
+                <a href="second-cam-graphic.html">second-cam-graphic.html</a>
+              </li>
+              <li>
+                <a href="webcam-overlay-16x9.html">webcam-overlay-16x9.html</a>
+              </li>
+              <li>
+                <a href="animated-polka-bar.html">animated-polka-bar.html</a>
+              </li>
+              <li>
+                <a href="animated-polka-bar-footer.html"
+                  >animated-polka-bar-footer.html</a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p>
+          <a href="https://github.com/karlsune">All my GitHub repositories</a>
+        </p>
       </section>
 
       <section id="about">
@@ -123,19 +179,19 @@
         <p>graduated high school 2019</p>
       </section>
 
-
       <section id="occupation">
         <h2>#occupation</h2>
         <p>
-          I am currently pursuing a bachelors in engineering/medtech at a top school. 
+          I am currently pursuing a bachelors in engineering/medtech
         </p>
         <h2>#why</h2>
         <p>
-          My passion for fitness, wellbeing and helping others drives me to learn more about how technology improves people's lives.
+          My passion for fitness, wellbeing and helping others drives me to
+          learn more about how technology improves people's lives.
         </p>
         <h2>#how</h2>
         <p>
-          I believe that by leveraging technology, we can create innovative solutions that enhance people's lives and promote overall well-being.
+          I believe that we can enhance our lives with technology.
         </p>
       </section>
 
@@ -158,11 +214,15 @@
 
       <section id="gallery">
         <h2>#gallery</h2>
-        <p><img class="example-img" src="./icon/example.png" alt="sample screenshot of my twitch channel using a dummy image"/></p>
+        <p>
+          <img
+            class="example-img"
+            src="./icon/example.png"
+            alt="sample screenshot of my twitch channel using a dummy image"
+          />
+        </p>
         <p>more to come!</p>
-        
       </section>
-
     </main>
 
     <!--
@@ -190,21 +250,20 @@
     <script defer src="./script/main.js"></script>
 
     <script>
-        // Curtain/collapsible menu logic for New Developments
-        const toggleBtn = document.getElementById('toggle-developments');
-        const devList = document.getElementById('developments-list');
-        toggleBtn.addEventListener('click', function() {
-          const expanded = toggleBtn.getAttribute('aria-expanded') === 'true';
-          toggleBtn.setAttribute('aria-expanded', !expanded);
-          devList.style.display = expanded ? 'none' : 'block';
-          toggleBtn.textContent = (expanded ? '▼' : '▲') + ' New Developments';
-        });
-      </script>
+      // Curtain/collapsible menu logic for New Developments
+      const toggleBtn = document.getElementById("toggle-developments");
+      const devList = document.getElementById("developments-list");
+      toggleBtn.addEventListener("click", function () {
+        const expanded = toggleBtn.getAttribute("aria-expanded") === "true";
+        toggleBtn.setAttribute("aria-expanded", !expanded);
+        devList.style.display = expanded ? "none" : "block";
+        toggleBtn.textContent = (expanded ? "▼" : "▲") + " New Developments";
+      });
+    </script>
 
     <noscript>
       <div id="noScriptWarn">
-        <strong>Notice:</strong> This site works best with JavaScript
-        enabled.
+        <strong>Notice:</strong> This site works best with JavaScript enabled.
       </div>
     </noscript>
   </body>
