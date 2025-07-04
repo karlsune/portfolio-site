@@ -19,10 +19,10 @@
             right: 0;
             z-index: 1000;
             width: 100vw;
-            height: 40px;
+            min-height: 40px; /* Optional: set a minimum height */
             overflow: hidden;
-            background: linear-gradient(90deg, #282a36 0%, #44475a 100%);
-            border-radius: 18px 18px 0 0;
+            background: #44475a;
+            border-radius: 0 0 0 0;
             border-top: 1px solid #ff79c6;
             box-shadow: 0 2px 24px #ff79c6aa, 0 1px 8px #000a;
         }
@@ -53,11 +53,12 @@
             z-index: 2;
             display: flex;
             flex-direction: row;
+            flex-wrap: wrap;
             align-items: center;
             justify-content: space-between;
             height: 100%;
             gap: 18px;
-            padding: 0 28px;
+            padding: 10px;
             width: 100%;
         }
         .ad-title {
@@ -114,7 +115,7 @@
     <footer class="bar-container">
         <div class="polka-dots" id="polkaDots"></div>
         <div class="ad-content">
-            <span class="ad-title">karlsune @ twitch.tv</span>
+            <span class="ad-title">i'm live! karlsune @ twitch.tv! use command !songrequest to let me know u want to hear music!</span>
         </div>
     </footer>
     <script>
