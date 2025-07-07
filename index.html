@@ -59,10 +59,26 @@
         MAIN: Contains the site title, animated subtitle, and all main sections.
     -->
     <main>
-      <div class="site-title">karlsune's vibe coded portfolio site.</div>
-      <div class="site-subtitle" id="site-subtitle" aria-live="polite">
-        web developer
-      </div>
+
+          <!-- Add a placeholder for the Twitch embed -->
+      <div id="twitch-embed"></div>
+
+      <!-- Load the Twitch embed JavaScript file -->
+      <script src="https://embed.twitch.tv/embed/v1.js"></script>
+       <script type="text/javascript">
+      new Twitch.Embed("twitch-embed", {
+        width: 854,
+        height: 480,
+        channel: "karlsune",
+        // Only needed if this page is going to be embedded on other websites
+        parent: ["embed.example.com", "othersite.example.com"]
+      });
+      </script>
+
+        <div class="site-title">karlsune's vibe coded portfolio site.</div>
+        <div class="site-subtitle" id="site-subtitle" aria-live="polite">
+          web developer
+        </div>
 
       <!--
         GitHub Profile Stats Embed:

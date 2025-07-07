@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Phonytronix Screensaver</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: #181c2f;
+            width: 100vw;
+            height: 100vh;
+        }
+        #dvd-logo {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #00eaff 0%, #6e7fdc 100%);
+            color: #fff;
+            border-radius: 1.5vw;
+            box-shadow: 0 4px 32px rgba(34, 40, 49, 0.25);
+            padding: 2vw 3vw;
+            min-width: 220px;
+            min-height: 120px;
+            user-select: none;
+            cursor: pointer;
+            transition: box-shadow 0.2s;
+        }
+        #dvd-logo:hover {
+            box-shadow: 0 8px 48px 4px #00eaff55;
+        }
+        .logo-text {
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 2.5vw;
+            font-weight: bold;
+            letter-spacing: 0.12em;
+            text-shadow: 0 2px 12px #00eaff44;
+            margin-bottom: 1vw;
+        }
+        .mission {
+            font-family: 'Roboto', Arial, sans-serif;
+            font-size: 1.1vw;
+            color: #e0f7fa;
+            text-align: center;
+            max-width: 30vw;
+            line-height: 1.5;
+        }
+        @media (max-width: 700px) {
+            #dvd-logo {
+                padding: 4vw 6vw;
+                min-width: 140px;
+                min-height: 80px;
+            }
+            .logo-text {
+                font-size: 5vw;
+            }
+            .mission {
+                font-size: 2.5vw;
+                max-width: 80vw;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="dvd-logo">
+        <div class="logo-text">Phonytronix</div>
+        <div class="mission">Innovating tomorrow’s imaginary electronics, today.</div>
+    </div>
+    <script>
+        const logo = document.getElementById('dvd-logo');
+        let vx = 2.2 + Math.random() * 1.5;
+        let vy = 1.8 + Math.random() * 1.5;
+        let rafId;
+
+        function getLogoRect() {
+            return logo.getBoundingClientRect();
+        }
+
+        function moveLogo() {
+            const rect = getLogoRect();
+            let x = logo.offsetLeft;
+            let y = logo.offsetTop;
+            const winW = window.innerWidth;
+            const winH = window.innerHeight;
+
+            x += vx;
+            y += vy;
+
+            // Bounce horizontally
+            if (x <= 0) {
+                x = 0;
+                vx = Math.abs(vx);
+                randomizeColor();
+            } else if (x + rect.width >= winW) {
+                x = winW - rect.width;
+                vx = -Math.abs(vx);
+                randomizeColor();
+            }
+
+            // Bounce vertically
+            if (y <= 0) {
+                y = 0;
+                vy = Math.abs(vy);
+                randomizeColor();
+            } else if (y + rect.height >= winH) {
+                y = winH - rect.height;
+                vy = -Math.abs(vy);
+                randomizeColor();
+            }
+
+            logo.style.left = x + 'px';
+            logo.style.top = y + 'px';
+
+            rafId = requestAnimationFrame(moveLogo);
+        }
+
+        function randomizeColor() {
+            const colors = [
+                ['#00eaff', '#6e7fdc'],
+                ['#ff2d2d', '#ffb347'],
+                ['#43e97b', '#38f9d7'],
+                ['#f7971e', '#ffd200'],
+                ['#e100ff', '#7f00ff'],
+                ['#00c6ff', '#0072ff']
+            ];
+            const pair = colors[Math.floor(Math.random() * colors.length)];
+            logo.style.background = `linear-gradient(135deg, ${pair[0]} 0%, ${pair[1]} 100%)`;
+            logo.style.boxShadow = `0 4px 32px 0 ${pair[0]}55`;
+        }
+
+        function centerLogo() {
+            const rect = getLogoRect();
+            logo.style.left = (window.innerWidth - rect.width) / 2 + 'px';
+            logo.style.top = (window.innerHeight - rect.height) / 2 + 'px';
+        }
+
+        window.addEventListener('resize', () => {
+            centerLogo();
+        });
+
+        // Start
+        window.onload = () => {
+            centerLogo();
+            rafId = requestAnimationFrame(moveLogo);
+        };
+
+        // Pause on click/tap
+        logo.addEventListener('click', () => {
+            if (rafId) {
+                cancelAnimationFrame(rafId);
+                rafId = null;
+                logo.style.boxShadow = '0 0 0 0 #fff0';
+            } else {
+                rafId = requestAnimationFrame(moveLogo);
+            }
+        });
+    </script>
+</body>
+</html>
