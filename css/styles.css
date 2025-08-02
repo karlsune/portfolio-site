@@ -4,6 +4,34 @@ CSS VARIABLES & BASE STYLES
 
 */
 
+/* ...existing code... */
+#emote-gallery {
+  margin: 2rem 0;
+  text-align: center;
+}
+.emote-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+.emote-grid img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: rgba(25, 118, 210, 0.5); /* Uses --light-accent color with 50% opacity */
+  padding: 2px;
+  transition: transform 0.15s;
+}
+.emote-grid img:hover {
+  transform: scale(1.2);
+  z-index: 1;
+}
+/* ...existing code... */
+
 /*Ensures padding and border are included */
 *,
 *::before,
