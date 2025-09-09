@@ -120,30 +120,58 @@
 
     <script>
         // JavaScript for the animated subtitle
-        const subtitleElement = document.getElementById("site-subtitle");
-        const subtitles = ["amateur developer", "problem solver", "vibe coder", "student"];
-        let subtitleIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        let speed = 100;
+        // This function handles the typewriter and delete animation for the subtitle.
 
+        // Get the HTML element where the subtitle will be displayed
+        const subtitleElement = document.getElementById("site-subtitle");
+
+        // The array of subtitles to display. You can change these to anything you like.
+        const subtitles = ["amateur developer", "problem solver", "vibe coder", "student"];
+
+        // The index of the current subtitle in the array.
+        let subtitleIndex = 0;
+
+        // The index of the character currently being typed or deleted.
+        let charIndex = 0;
+
+        // A boolean to track whether the text is being deleted or typed.
+        let isDeleting = false;
+
+        // The speed of the animation in milliseconds.
+        // Typing speed is 100ms per character.
+        // Deleting speed is also 100ms per character.
+        // The delay before starting to delete is 2000ms.
+        let speed = 33;
+
+        // The main function that handles the typing and deleting animation.
         function type() {
+            // Get the current subtitle string from the array.
             const currentText = subtitles[subtitleIndex];
+
+            // Determine which part of the string to display based on whether it's typing or deleting.
             const displayChar = isDeleting ? currentText.substring(0, charIndex--) : currentText.substring(0, charIndex++);
+            
+            // Update the text content of the subtitle element.
             subtitleElement.textContent = displayChar;
 
+            // Check if the typing is finished.
             if (!isDeleting && charIndex > currentText.length) {
-                speed = 2000;
+                // If so, set a longer delay and start deleting.
+                speed = 100;
                 isDeleting = true;
             } else if (isDeleting && charIndex === 0) {
+                // Check if deleting is finished.
+                // If so, switch back to typing, move to the next subtitle, and reset speed.
                 isDeleting = false;
                 subtitleIndex = (subtitleIndex + 1) % subtitles.length;
-                speed = 100;
+                speed = 33;
             }
 
+            // Call the type function again after a delay, creating the animation loop.
             setTimeout(type, speed);
         }
 
+        // Start the animation when the entire page is loaded.
         document.addEventListener("DOMContentLoaded", () => {
             if (subtitleElement) {
                 type();
