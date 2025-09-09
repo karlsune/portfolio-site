@@ -72,6 +72,7 @@
         }
 
         li {
+            color: var(--highlight-color);
             margin-bottom: 0.5rem;
         }
     </style>
@@ -94,9 +95,11 @@
             <section id="education">
                 <h2>#education</h2>
                 <p>graduated high school - 2019</p>
+                <h2>#universities</h2>
                 <p>attended karolinska institute - 2020</p>
                 <p>attended stockholm university - 2023</p>
                 <p>attended luleå technical university - 2023</p>
+                <p>attended gothemburg university - 2025</p>
                 <p>attended KTH royal institute of technology - 2025</p>
 
 
@@ -143,38 +146,47 @@
         // A boolean to track whether the text is being deleted or typed.
         let isDeleting = false;
 
-        // The speed of the animation in milliseconds.
-        // Typing speed is 100ms per character.
-        // Deleting speed is also 100ms per character.
-        // The delay before starting to delete is 2000ms.
-        let speed = 33;
+        // Define speeds for different parts of the animation.
+        const typingSpeed = 100; // Speed of each character being typed (in ms)
+        const deletingSpeed = 50; // Speed of each character being deleted (in ms)
+        const pauseBeforeDelete = 2000; // Pause after typing a word (in ms)
+        const pauseBeforeType = 500; // Pause after deleting a word (in ms)
 
         // The main function that handles the typing and deleting animation.
         function type() {
             // Get the current subtitle string from the array.
             const currentText = subtitles[subtitleIndex];
-
-            // Determine which part of the string to display based on whether it's typing or deleting.
-            const displayChar = isDeleting ? currentText.substring(0, charIndex--) : currentText.substring(0, charIndex++);
             
+            // Set the speed for the current action.
+            let currentSpeed = isDeleting ? deletingSpeed : typingSpeed;
+
+            // Update the character index based on the action (typing or deleting).
+            if (isDeleting) {
+                charIndex--;
+            } else {
+                charIndex++;
+            }
+
             // Update the text content of the subtitle element.
-            subtitleElement.textContent = displayChar;
+            subtitleElement.textContent = currentText.substring(0, charIndex);
 
             // Check if the typing is finished.
-            if (!isDeleting && charIndex > currentText.length) {
+            if (!isDeleting && charIndex === currentText.length) {
                 // If so, set a longer delay and start deleting.
-                speed = 100;
                 isDeleting = true;
+                setTimeout(type, pauseBeforeDelete);
+                return;
             } else if (isDeleting && charIndex === 0) {
                 // Check if deleting is finished.
                 // If so, switch back to typing, move to the next subtitle, and reset speed.
                 isDeleting = false;
                 subtitleIndex = (subtitleIndex + 1) % subtitles.length;
-                speed = 33;
+                setTimeout(type, pauseBeforeType);
+                return;
             }
 
             // Call the type function again after a delay, creating the animation loop.
-            setTimeout(type, speed);
+            setTimeout(type, currentSpeed);
         }
 
         // Start the animation when the entire page is loaded.
