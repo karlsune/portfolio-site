@@ -1,325 +1,154 @@
-<!--
-===============================================================================
-
-    LICENSE NOTICE
-
-    This website is open source and free to use under the GNU General Public License v3 (GPLv3).
-    You may copy, modify, and distribute this code as long as you comply with the GPLv3 terms.
-    See LICENSE.md or https://www.gnu.org/licenses/gpl-3.0.html for details.
-
-    Some code on this site was generated with the help of AI (GitHub Copilot).
-    See https://github.com/features/copilot for more information about AI-generated code.
-
-===============================================================================
--->
-
 <!DOCTYPE html>
-
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>portfolio site | karlsune</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg-color: #282c34;
+            --text-color: #abb2bf;
+            --highlight-color: #61afef;
+            --font-family: 'JetBrains Mono', monospace;
+        }
 
-    <!-- links -->
-    <link rel="icon" href="./icon/icon.gif" />
-    <link rel="stylesheet" type="text/css" href="./css/styles.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-family);
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1.6;
+        }
 
-  <body>
-    <!--
-        HEADER: Contains navigation, theme toggle, and menu button for mobile. test
-    -->
-    <header>
-      <!-- Menu toggle button for mobile navigation -->
-      <button
-        class="menu-toggle"
-        aria-label="Open main menu"
-        aria-controls="main-nav"
-        aria-expanded="false"
-      >
-        &#9776;
-        <!--hamburger menu-->
-      </button>
-      <!-- Main navigation with accessible landmark and id -->
-      <nav id="main-nav" aria-label="Main site navigation">
-        <a href="#about">#about</a>
-        <a href="#education">#education</a>
-        <a href="#stats">#stats</a>
-        <a href="#occupation">#occupation</a>
-        <a href="#skills">#skills</a>
-      </nav>
-    </header>
+        .container {
+            max-width: 800px;
+            width: 100%;
+            padding: 1rem;
+        }
 
-    <!--
-        MAIN: Contains the site title, animated subtitle, and all main sections.
-    -->
-    <main>
+        header {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
 
+        .site-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
 
-              <div class="site-title">karlsune's vibe coded portfolio site.</div>
-        <div class="site-subtitle" id="site-subtitle" aria-live="polite">
-          web developer
-        </div>
+        .site-subtitle {
+            font-size: 1.5rem;
+            min-height: 1.5rem; /* Prevents layout shift */
+        }
 
-              <!-- Emote Gallery -->
-      <section id="emote-gallery">
-        <h2>#emotes</h2>
-        <div class="emote-grid">
-          <img src="./icon/11235927_1573001056292964_550819561_n.webp" alt="emote" />
-          <img src="./icon/506652294229f.png" alt="emote" />
-          <img src="./icon/5164c87bf0f7d.gif" alt="emote" />
-          <img src="./icon/6679a4ec420fb.png" alt="emote" />
-          <img src="./icon/67155a2beb4d3.png" alt="emote" />
-          <img src="./icon/6780258063f32.jpg" alt="emote" />
-          <img src="./icon/67c25cdab104c.png" alt="emote" />
-          <img src="./icon/67f2afd9ef0c2.gif" alt="emote" />
-          <img src="./icon/681d3489a52a9.gif" alt="emote" />
-          <img src="./icon/683316b7f00d5.png" alt="emote" />
-          <img src="./icon/68624f2aca14a.gif" alt="emote" />
-          <img src="./icon/6871ed4608cb3.png" alt="emote" />
-          <img src="./icon/a5188b3d057996282432f6f7bd73b580-2306545682.jpg" alt="emote" />
-          <img src="./icon/channelpoint.png" alt="emote" />
-          <img src="./icon/despairge.png" alt="emote" />
-          <img src="./icon/e06b65c8b078ac9af14507e12b9a3d4a.png" alt="emote" />
-          <img src="./icon/example.png" alt="emote" />
-          <img src="./icon/ff0e34c49b08c9637297e4ef6eebdf4b-2678976422.jpg" alt="emote" />
-          <img src="./icon/goose.png" alt="emote" />
-          <img src="./icon/goose2.png" alt="emote" />
-          <img src="./icon/icon.gif" alt="emote" />
-          <img src="./icon/icon2.png" alt="emote" />
-          <img src="./icon/karlsunesmugcompressed.png" alt="emote" />
-          <img src="./icon/poggers.png" alt="emote" />
-          <!-- Add more as needed -->
-        </div>
-      </section>
+        section {
+            background-color: #21252b;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #444;
+        }
 
+        h2 {
+            font-size: 1.5rem;
+            color: var(--highlight-color);
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
 
+        p, ul {
+            margin: 0 0 1rem 0;
+            padding: 0;
+        }
 
+        li {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
 
+<body>
+    <div class="container">
+        <header>
+            <div class="site-title">karlsune's portfolio site.</div>
+            <div class="site-subtitle" id="site-subtitle" aria-live="polite"></div>
+        </header>
 
+        <main>
+            <section id="about">
+                <h2>#about</h2>
+                <p>name: Karl Sune</p>
+                <p>age: 26</p>
+            </section>
 
+            <section id="education">
+                <h2>#education</h2>
+                <p>graduated high school 2019</p>
+            </section>
 
-      <!--
-        GitHub Profile Stats Embed:
-        This section displays a dynamic card with my GitHub stats.
-        (https://github.com/anuraghazra/github-readme-stats)
-        -->
+            <section id="occupation">
+                <h2>#occupation</h2>
+                <p>I am currently pursuing a bachelors in engineering/medtech</p>
+                <p>My passion for fitness, wellbeing and helping others drives me to learn more about how technology improves people's lives.</p>
+                <p>I believe that we can enhance our lives with technology #transhumanist.</p>
+            </section>
 
-      <section id="stats">
-        <a href="https://github.com/karlsune" target="_blank" rel="noopener">
-          <img
-            src="https://github-readme-stats.vercel.app/api?username=karlsune&show_icons=true&theme=default"
-            alt="GitHub stats for karlsune"
-            style="max-width: 100%; display: block; margin: 0 auto"
-          />
-        </a>
-      </section>
+            <section id="skills">
+                <h2>#skills</h2>
+                <p>vibe coding, html, css, js, linux, windows, git, github, gaming, web design, photography</p>
+            </section>
 
-      <section id="web-dev-projects">
-        <h2>#projects</h2>
-        <ul>
-          <li>
-            <a href="https://github.com/karlsune/portfolio-site"
-              >portfolio-site (repo)</a
-            >
-            <ul>
-              <li><a href="index.html">index.html</a></li>
-              <li><a href="LICENSE.md">LICENSE.md</a></li>
-              <li><a href="README.md">README.md</a></li>
-              <li>
-                <a href="css/">css/</a>
-                <ul>
-                  <li><a href="css/styles.css">styles.css</a></li>
-                </ul>
-              </li>
-              <li>
-                <a href="icon/">icon/</a>
-                <ul>
-                  <li><a href="icon/icon.gif">icon.gif</a></li>
-                  <li><a href="icon/example.png">example.png</a></li>
-                </ul>
-              </li>
-              <li>
-                <a href="script/">script/</a>
-                <ul>
-                  <li>
-                    <a href="script/subtitleRender.js">subtitleRender.js</a>
-                  </li>
-                  <li><a href="script/array.js">array.js</a></li>
-                  <li><a href="script/main.js">main.js</a></li>
-                </ul>
-              </li>
-              <li>
-                <a href="game/">game/</a>
-                <ul>
-                  <li><a href="game/game.html">game.html</a></li>
-                  <!-- Add more game files if present -->
-                </ul>
-              </li>
-              <li>
-                <a href="business/">business/</a>
-                <ul>
-                  <li><a href="business/index.html">index.html</a></li>
-                </ul>
-              </li>
-              <li>
-                <a href="construction/">construction/</a>
-                <ul>
-                  <li><a href="construction/index.html">index.html</a></li>
-                </ul>
-              </li>
-              <li><a href="clock-web-app.htm">clock-web-app.htm</a></li>
-              <li>
-                <a href="animated-dopamine-bg.html"
-                  >animated-dopamine-bg.html</a
-                >
-              </li>
-              <li>
-                <a href="bible-quote-generator.html"
-                  >bible-quote-generator.html</a
-                >
-              </li>
-              <li><a href="hl2-hud-overlay.html">hl2-hud-overlay.html</a></li>
-              <li>
-                <a href="second-cam-graphic.html">second-cam-graphic.html</a>
-              </li>
-              <li>
-                <a href="webcam-overlay-16x9.html">webcam-overlay-16x9.html</a>
-              </li>
-              <li>
-                <a href="animated-polka-bar.html">animated-polka-bar.html</a>
-              </li>
-              <li>
-                <a href="animated-polka-bar-footer.html"
-                  >animated-polka-bar-footer.html</a
-                >
-              </li>
-            </ul>
-          </li>
-        </ul>
-        <p>
-          <a href="https://github.com/karlsune">All my GitHub repositories</a>
-        </p>
-      </section>
-
-      <section id="about">
-        <h2>#about</h2>
-        <p>name: Karl Sune</p>
-        <p>age: 26</p>
-      </section>
-
-      <section id="education">
-        <h2>#education</h2>
-        <p>graduated high school 2019</p>
-      </section>
-
-      <section id="occupation">
-        <h2>#occupation</h2>
-        <p>
-          I am currently pursuing a bachelors in engineering/medtech
-        </p>
-        <h2>#why</h2>
-        <p>
-          My passion for fitness, wellbeing and helping others drives me to
-          learn more about how technology improves people's lives.
-        </p>
-        <h2>#how</h2>
-        <p>
-          I believe that we can enhance our lives with technology.
-        </p>
-      </section>
-
-      <section id="skills">
-        <h2>#skills</h2>
-        <ul class="skills-list">
-          <li>vibe coding</li>
-          <li>html</li>
-          <li>css</li>
-          <li>js</li>
-          <li>linux</li>
-          <li>windows</li>
-          <li>git</li>
-          <li>github</li>
-          <li>gaming</li>
-          <li>web design</li>
-          <li>photography</li>
-        </ul>
-      </section>
-
-      <section id="gallery">
-        <h2>#gallery</h2>
-        <p>
-          <img
-            class="example-img"
-            src="./icon/example.png"
-            alt="sample screenshot of my twitch channel using a dummy image"
-          />
-        </p>
-        <p>more to come!</p>
-      </section>
-        <div id="twitch-embed">
-            <h2>"twitch embedded"</h2>
-
-        <!-- Load the Twitch embed JavaScript file -->
-        <script src="https://embed.twitch.tv/embed/v1.js"></script>
-        <script type="text/javascript">
-        new Twitch.Embed("twitch-embed", {
-          width: 854,
-          height: 480,
-          channel: "karlsune",
-          // Only needed if this page is going to be embedded on other websites
-          parent: ["embed.example.com", "othersite.example.com"]
-        });
-        </script>
-      </div>
-
-    </main>
-
-    <!--
-        FOOTER: Contains external links and a "top" link.
-    -->
-    <footer>
-      <section id="links">
-        <p><a href="https://github.com/karlsune">github</a></p>
-        <p><a href="https://www.linkedin.com/in/karlsune/">linkedin</a></p>
-        <p><a href="https://www.twitch.tv/karlsune">twitch</a></p>
-        <p><a href="https://www.instagram.com/karlsunes/">instagram</a></p>
-
-        <p><a href="#top">top</a></p>
-      </section>
-    </footer>
-
-    <!-- Back to top button -->
-    <button id="back-to-top" aria-label="Back to top">⬆️</button>
-
-    <!--
-        JAVASCRIPT: Handles animated subtitles, storage, and interactivity.
-    -->
-    <script src="./script/subtitleRender.js"></script>
-    <script src="./script/array.js"></script>
-    <script defer src="./script/main.js"></script>
+            <section id="links">
+                <h2>#links</h2>
+                <p><a href="https://github.com/karlsune">gitHub</a></p>
+                <p><a href="https://karlsune.org">this site</a></p>
+                <p><a href="https://www.instagram.com/karlsune.s/">instagram</a></p>
+                <p><a href="https://www.linkedin.com/in/karlsune/">linkedIn</a></p>
+            </section>
+        </main>
+    </div>
 
     <script>
-      // Curtain/collapsible menu logic for New Developments
-      const toggleBtn = document.getElementById("toggle-developments");
-      const devList = document.getElementById("developments-list");
-      toggleBtn.addEventListener("click", function () {
-        const expanded = toggleBtn.getAttribute("aria-expanded") === "true";
-        toggleBtn.setAttribute("aria-expanded", !expanded);
-        devList.style.display = expanded ? "none" : "block";
-        toggleBtn.textContent = (expanded ? "▼" : "▲") + " New Developments";
-      });
-    </script>
+        // JavaScript for the animated subtitle
+        const subtitleElement = document.getElementById("site-subtitle");
+        const subtitles = ["amateur developer", "problem solver", "vibe coder", "student"];
+        let subtitleIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let speed = 100;
 
-    <noscript>
-      <div id="noScriptWarn">
-        <strong>Notice:</strong> This site works best with JavaScript enabled.
-      </div>
-    </noscript>
-  </body>
+        function type() {
+            const currentText = subtitles[subtitleIndex];
+            const displayChar = isDeleting ? currentText.substring(0, charIndex--) : currentText.substring(0, charIndex++);
+            subtitleElement.textContent = displayChar;
+
+            if (!isDeleting && charIndex > currentText.length) {
+                speed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                subtitleIndex = (subtitleIndex + 1) % subtitles.length;
+                speed = 100;
+            }
+
+            setTimeout(type, speed);
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            if (subtitleElement) {
+                type();
+            }
+        });
+    </script>
+</body>
 </html>
