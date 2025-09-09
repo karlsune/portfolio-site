@@ -18,7 +18,7 @@
             color: var(--text-color);
             font-family: var(--font-family);
             margin: 0;
-            padding: 2rem;
+            padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -31,13 +31,25 @@
             padding: 1rem;
         }
 
+        /* The header is now fixed to the top of the viewport */
         header {
             width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: var(--bg-color); /* Matches body background */
+            z-index: 1000;
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 2rem;
             text-align: center;
+            padding: 2rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Add margin to the main content to prevent it from being hidden by the fixed header */
+        main {
+            margin-top: 15rem; /* Adjust this value if the header height changes */
         }
 
         .site-title {
@@ -51,6 +63,22 @@
             min-height: 1.5rem; /* Prevents layout shift */
         }
 
+        /* Add cursor styling */
+        .site-subtitle::after {
+            content: '|';
+            display: inline;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            from, to {
+                color: transparent;
+            }
+            50% {
+                color: var(--text-color);
+            }
+        }
+        
         section {
             background-color: #21252b;
             padding: 2rem;
@@ -72,8 +100,16 @@
         }
 
         li {
-            color: var(--highlight-color);
             margin-bottom: 0.5rem;
+        }
+
+        a {
+            color: var(--highlight-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -88,7 +124,7 @@
         <main>
             <section id="about">
                 <h2>#about</h2>
-                <p>name: Karl S</p>
+                <p>name: Karl S.</p>
                 <p>age: 26</p>
             </section>
 
@@ -101,8 +137,6 @@
                 <p>attended luleå technical university - 2023</p>
                 <p>attended gothemburg university - 2025</p>
                 <p>attended KTH royal institute of technology - 2025</p>
-
-
             </section>
 
             <section id="occupation">
@@ -116,7 +150,7 @@
                 <h2>#skills</h2>
                 <p>vibe coding, html, css, js, linux, windows, git, github, gaming, web design, photography</p>
             </section>
-
+            
             <section id="links">
                 <h2>#links</h2>
                 <p><a href="https://github.com/karlsune">gitHub</a></p>
@@ -166,9 +200,12 @@
             } else {
                 charIndex++;
             }
+            
+            // Get the current substring.
+            let displayText = currentText.substring(0, charIndex);
 
             // Update the text content of the subtitle element.
-            subtitleElement.textContent = currentText.substring(0, charIndex);
+            subtitleElement.textContent = displayText;
 
             // Check if the typing is finished.
             if (!isDeleting && charIndex === currentText.length) {
