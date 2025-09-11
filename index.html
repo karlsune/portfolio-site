@@ -31,13 +31,13 @@
             padding: 1rem;
         }
 
-        /* The header is now fixed to the top of the viewport */
+        /* fixed header */
         header {
             width: 100%;
             position: fixed;
             top: 0;
             left: 0;
-            background-color: var(--bg-color); /* Matches body background */
+            background-color: var(--bg-color); 
             z-index: 1000;
             display: flex;
             flex-direction: column;
@@ -49,7 +49,7 @@
 
         /* Add margin to the main content to prevent it from being hidden by the fixed header */
         main {
-            margin-top: 15rem; /* Adjust this value if the header height changes */
+            margin-top: 9rem; /* Adjust this value if the header height changes */
         }
 
         .site-title {
