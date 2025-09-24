@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stream Initializing - LoL NCurses Style</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #0d0d12;
+            font-family: 'Courier New', monospace;
+            font-weight: bolder;
+            color: #4CAF50;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+
+        #ncurses-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: grid;
+            font-size: 32px;
+            line-height: 1;
+            user-select: none;
+            pointer-events: none;
+            opacity: 0.15;
+            filter: blur(0.5px);
+        }
+
+        .ncurses-char {
+            text-align: center;
+            overflow: hidden;
+        }
+
+        #main-message-container {
+            position: relative;
+            z-index: 10;
+            text-align: left;
+            margin: 0 auto;
+            padding: 24px 32px;
+            border: 2px solid #32CD32;
+            box-shadow: 0 0 20px #32CD32;
+            font-size: 2.2em;
+            color: #E0FFFF;
+            text-shadow: 0 0 10px #32CD32;
+            letter-spacing: 2px;
+            background: #181820;
+            font-family: 'Courier Prime', 'Courier New', Courier, monospace;
+            border-radius: 8px;
+            display: inline-block;
+            max-width: 90vw;
+            /* Removed white-space: pre; to fix text rendering */
+            opacity: 0; /* Initially hidden */
+            transform: translateY(20px);
+            animation: fadeIn 1s forwards;
+            animation-delay: 0.5s;
+            white-space: nowrap; /* Prevent line breaks */
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .bash-prompt {
+            color: #32CD32;
+            font-weight: bold;
+        }
+
+        .blinking-cursor {
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            from, to { visibility: hidden; }
+            50% { visibility: visible; }
+        }
+
+        .lol-frame-top-left, .lol-frame-top-right,
+        .lol-frame-bottom-left, .lol-frame-bottom-right {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border: 2px solid #5a5a6a;
+            box-sizing: border-box;
+            opacity: 0.2;
+        }
+        .lol-frame-top-left { top: 10px; left: 10px; border-right: none; border-bottom: none; }
+        .lol-frame-top-right { top: 10px; right: 10px; border-left: none; border-bottom: none; }
+        .lol-frame-bottom-left { bottom: 10px; left: 10px; border-right: none; border-top: none; }
+        .lol-frame-bottom-right { bottom: 10px; right: 10px; border-left: none; border-top: none; }
+
+        .lol-icon-placeholder {
+            position: absolute;
+            background-color: #1a1a2a;
+            border: 1px solid #7a7a8a;
+            width: 40px;
+            height: 40px;
+            opacity: 0.3;
+            border-radius: 5px;
+        }
+        .icon-top-left { top: 20px; left: 20px; }
+        .icon-top-right { top: 20px; right: 20px; }
+        .icon-bottom-left { bottom: 20px; left: 20px; }
+        .icon-bottom-right { bottom: 20px; right: 20px; }
+        
+        .bash-prompt,
+        #initializing-text,
+        .blinking-cursor {
+            display: inline-block; /* Ensure all are on the same line */
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div id="ncurses-container"></div>
+
+    <div id="main-message-container">
+      <span class="bash-prompt">karl_real@kick.com-$$$-</span><span id="initializing-text"></span><span class="blinking-cursor">_</span>
+    </div>
+
+    <div class="lol-frame-top-left"></div>
+    <div class="lol-frame-top-right"></div>
+    <div class="lol-frame-bottom-left"></div>
+    <div class="lol-frame-bottom-right"></div>
+    <div class="lol-icon-placeholder icon-top-left"></div>
+    <div class="lol-icon-placeholder icon-top-right"></div>
+    <div class="lol-icon-placeholder icon-bottom-left"></div>
+    <div class="lol-icon-placeholder icon-bottom-right"></div>
+
+    <script>
+        const container = document.getElementById('ncurses-container');
+        const mainMessageSpan = document.getElementById('initializing-text');
+        const cursor = document.querySelector('.blinking-cursor');
+
+        const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+`-=[]{}|;':\",./<>?~ ";
+        const frameChars = "─━│┃┄┅┆┇┈┉┊┭┮┯┰┳┴┬├┤┼═║╔╗╚╝╠╣╦╩╬";
+        const specialChars = "░▒▓█";
+
+        let charElements = [];
+        let animationFrameId; // Variable to store the animation frame ID
+        
+        function initializeGrid() {
+            const charWidth = 32;
+            const charHeight = 32;
+            
+            const gridWidth = Math.floor(window.innerWidth / charWidth);
+            const gridHeight = Math.floor(window.innerHeight / charHeight);
+
+            container.innerHTML = '';
+            container.style.gridTemplateColumns = `repeat(${gridWidth}, 1fr)`;
+            container.style.gridTemplateRows = `repeat(${gridHeight}, 1fr)`;
+
+            charElements = [];
+            for (let i = 0; i < gridWidth * gridHeight; i++) {
+                const charDiv = document.createElement('div');
+                charDiv.classList.add('ncurses-char');
+                charDiv.textContent = chars[Math.floor(Math.random() * chars.length)];
+                container.appendChild(charDiv);
+                charElements.push(charDiv);
+            }
+        }
+        
+        function animateBackground() {
+            charElements.forEach(el => {
+                if (Math.random() < 0.15) {
+                    const charType = Math.random();
+                    if (charType < 0.5) {
+                        el.textContent = chars[Math.floor(Math.random() * chars.length)];
+                        el.style.color = `rgba(76, 175, 80, ${0.1 + Math.random() * 0.4})`;
+                    } else if (charType < 0.8) {
+                        el.textContent = frameChars[Math.floor(Math.random() * frameChars.length)];
+                        el.style.color = `rgba(100, 200, 100, ${0.2 + Math.random() * 0.5})`;
+                    } else {
+                        el.textContent = specialChars[Math.floor(Math.random() * specialChars.length)];
+                        el.style.color = `rgba(150, 255, 150, ${0.3 + Math.random() * 0.6})`;
+                    }
+                }
+            });
+            // Request the next frame and store its ID
+            animationFrameId = requestAnimationFrame(animateBackground);
+        }
+
+        // Reserve Function to stop the background animation loop
+        function stopBackgroundAnimation() {
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+                // Make the background more static after animation stops
+                container.style.opacity = '0.05'; 
+            }
+        }
+
+        const message = " STREAM IS INITIALIZING";
+        let messageIndex = 0;
+
+        function typeMessage() {
+            if (messageIndex < message.length) {
+                mainMessageSpan.textContent = message.substring(0, messageIndex + 1);
+                messageIndex++;
+                setTimeout(typeMessage, 150);
+            } 
+        }
+
+        window.addEventListener('resize', initializeGrid);
+        
+        // Start everything on page load
+        window.onload = () => {
+          initializeGrid();
+          animateBackground();
+          typeMessage();
+          setInterval(() => {
+              const hueShift = Math.random() * 30 - 15;
+              document.getElementById('main-message-container').style.filter = `hue-rotate(${hueShift}deg)`;
+              document.getElementById('main-message-container').style.textShadow = `0 0 ${10 + Math.random() * 5}px #32CD32`;
+          }, 1000);
+        };
+    </script>
+</body>
+</html>
